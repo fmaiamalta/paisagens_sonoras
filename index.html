@@ -16,8 +16,7 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
       background: #f3f4f6;
       font-family: Arial, Helvetica, sans-serif;
       color: #111827;
@@ -71,27 +70,22 @@
 
     .stage {
       width: 100%;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .layout {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       width: 100%;
-      height: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     .map-container {
       position: relative;
-      width: fit-content;
-      height: fit-content;
+      display: inline-block;
       max-width: 100%;
-      max-height: 100%;
-      flex: 0 1 auto;
+      line-height: 0;
     }
 
     .map-container img {
@@ -100,6 +94,7 @@
       height: auto;
       max-width: calc(100vw - 20px);
       max-height: calc(100vh - 110px);
+      line-height: normal;
     }
 
     .legend-overlay {
@@ -107,6 +102,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 5;
+      line-height: normal;
     }
 
     .legend-label {
@@ -159,13 +155,15 @@
 
     .controls-panel {
       position: absolute;
-      right: 2.5%;
-      bottom: 5%;
+      right: 2.6%;
+      bottom: 4.4%;
       z-index: 12;
       display: flex;
       flex-direction: column;
       gap: 12px;
       align-items: stretch;
+      width: 240px;
+      line-height: normal;
     }
 
     .legend-btn {
@@ -336,11 +334,19 @@
       color: #111827;
     }
 
+    .audio-question {
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #5b4636;
+      margin: 2px 0 2px 0;
+    }
+
     .hidden {
       display: none !important;
     }
 
-    .audio-only #modal-title,
     .audio-only #modal-img,
     .audio-only .audio-note {
       display: none !important;
@@ -352,6 +358,11 @@
 
     .audio-only .content {
       padding: 22px 16px;
+    }
+
+    .audio-only #modal-title {
+      font-size: 0;
+      line-height: 0;
     }
 
     @media (max-width: 900px) {
@@ -382,9 +393,10 @@
       }
 
       .controls-panel {
-        right: 3%;
-        bottom: 4%;
-        align-items: stretch;
+        right: 2.8%;
+        bottom: 4.1%;
+        width: 210px;
+        gap: 10px;
       }
 
       .legend-btn {
@@ -394,7 +406,6 @@
       }
 
       .mode-label {
-        width: 100%;
         min-height: 36px;
         gap: 8px;
       }
@@ -414,12 +425,107 @@
         padding: 2px 6px;
       }
     }
+
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
+
+      .wrap {
+        padding: 8px 10px 16px 10px;
+      }
+
+      .stage,
+      .layout {
+        display: block;
+      }
+
+      .map-container {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        line-height: normal;
+      }
+
+      .map-container img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+      }
+
+      .controls-panel {
+        position: static;
+        width: min(420px, 100%);
+        margin: 14px auto 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .legend-btn,
+      .mode-label {
+        width: 100%;
+      }
+
+      .legend-btn {
+        min-height: 42px;
+        font-size: 15px;
+      }
+
+      .mode-label {
+        min-height: 42px;
+      }
+
+      .mode-text {
+        font-size: 18px;
+      }
+
+      .mode-dot {
+        width: 26px;
+        height: 26px;
+        flex: 0 0 26px;
+      }
+
+      .legend-label {
+        font-size: 10px;
+        padding: 2px 5px;
+      }
+
+      .audio-question {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .topbar {
+        gap: 8px;
+        padding: 8px 10px 4px 10px;
+      }
+
+      .topbar h1 {
+        font-size: 21px;
+      }
+
+      .legend-label {
+        font-size: 9px;
+        padding: 1px 4px;
+      }
+
+      .card h2 {
+        font-size: 18px;
+      }
+
+      .audio-question {
+        font-size: 21px;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <img src="assets/logo.jpg" alt="Logótipo República Portuguesa, Educação, Ciência e Inovação, e AEDD" class="logo-topo">
-
     <div class="title-area">
       <h1>O som dos espaços. Narrativas de sustentabilidade.</h1>
     </div>
@@ -449,21 +555,21 @@
             <div class="legend-label" style="--x:48.9; --y:51.6;">WC’s</div>
           </div>
 
-          <button class="hotspot" style="--x:53.0; --y:39.2; --w:7.6; --h:8.8;" data-id="1" data-title="Auditório" data-img="assets/1_auditorio.jpg" data-audio="assets/1_auditorio.mp3" aria-label="Auditório"></button>
-          <button class="hotspot" style="--x:39.2; --y:56.2; --w:7.6; --h:8.8;" data-id="2" data-title="Bar" data-img="assets/2_bar.JPG" data-audio="assets/2_bar.mp3" aria-label="Bar"></button>
-          <button class="hotspot" style="--x:63.9; --y:56.0; --w:7.6; --h:8.8;" data-id="3" data-title="Biblioteca" data-img="assets/3_biblioteca.JPG" data-audio="assets/3_biblioteca.mp3" aria-label="Biblioteca"></button>
-          <button class="hotspot" style="--x:21.5; --y:26.0; --w:7.6; --h:8.8;" data-id="4" data-title="Campo Exterior" data-img="assets/4_campo_exterior.JPG" data-audio="assets/4_campo_exterior.mp3" aria-label="Campo Exterior"></button>
-          <button class="hotspot" style="--x:44.5; --y:69.8; --w:7.6; --h:8.8;" data-id="5" data-title="Cantina" data-img="assets/5_cantina.JPG" data-audio="assets/5_cantina.mp3" aria-label="Cantina"></button>
-          <button class="hotspot" style="--x:47.7; --y:58.3; --w:7.6; --h:8.8;" data-id="6" data-title="Convívio" data-img="assets/6_convivio.jpg" data-audio="assets/6_convivio.mp3" aria-label="Convívio"></button>
-          <button class="hotspot" style="--x:65.0; --y:68.3; --w:7.6; --h:8.8;" data-id="7" data-title="Portão" data-img="assets/7_portao.JPG" data-audio="assets/7_portao.mp3" aria-label="Portão"></button>
-          <button class="hotspot" style="--x:52.7; --y:20.0; --w:7.6; --h:8.8;" data-id="8" data-title="Laboratórios" data-img="assets/8_laboratorios.JPG" data-audio="assets/8_laboratorios.mp3" aria-label="Laboratórios"></button>
-          <button class="hotspot" style="--x:80.5; --y:41.0; --w:7.6; --h:8.8;" data-id="9" data-title="Páteo" data-img="assets/9_pateo.JPG" data-audio="assets/9_pateo.mp3" aria-label="Páteo"></button>
-          <button class="hotspot" style="--x:24.4; --y:70.6; --w:7.6; --h:8.8;" data-id="10" data-title="Pavilhão Gimnodesportivo" data-img="assets/10_pavilhao_gimnodesportivo.JPG" data-audio="assets/10_pavilhao_gimnodesportivo.mp3" aria-label="Pavilhão Gimnodesportivo"></button>
-          <button class="hotspot" style="--x:40.4; --y:46.0; --w:7.6; --h:8.8;" data-id="11" data-title="Reprografia" data-img="assets/11_reprografia.JPG" data-audio="assets/11_reprografia.mp3" aria-label="Reprografia"></button>
-          <button class="hotspot" style="--x:42.6; --y:29.0; --w:7.6; --h:8.8;" data-id="12" data-title="Sala de Artes" data-img="assets/12_sala_artes.png" data-audio="assets/12_sala_artes.mp3" aria-label="Sala de Artes"></button>
-          <button class="hotspot" style="--x:83.0; --y:19.0; --w:7.6; --h:8.8;" data-id="13" data-title="Sala de Informática" data-img="assets/13_sala_informatica.JPG" data-audio="assets/13_sala_informatica.mp3" aria-label="Sala de Informática"></button>
-          <button class="hotspot" style="--x:63.2; --y:45.0; --w:7.6; --h:8.8;" data-id="14" data-title="PBX" data-img="assets/14_pbx.JPG" data-audio="assets/14_pbx.mp3" aria-label="PBX"></button>
-          <button class="hotspot" style="--x:48.5; --y:48.8; --w:7.6; --h:8.8;" data-id="15" data-title="WC’s" data-img="assets/15_wcs.JPG" data-audio="assets/15_wcs.mp3" aria-label="WC’s"></button>
+          <button class="hotspot" style="--x:53.0; --y:39.2; --w:7.6; --h:8.8;" data-id="1" data-title="Auditório" data-img="assets/1_auditorio.jpg" data-audio-image="assets/1_auditorio.mp3" data-audio-only="assets/1_auditorio_audio.mp3" aria-label="Auditório"></button>
+          <button class="hotspot" style="--x:39.2; --y:56.2; --w:7.6; --h:8.8;" data-id="2" data-title="Bar" data-img="assets/2_bar.JPG" data-audio-image="assets/2_bar.mp3" data-audio-only="assets/2_bar_audio.mp3" aria-label="Bar"></button>
+          <button class="hotspot" style="--x:63.9; --y:56.0; --w:7.6; --h:8.8;" data-id="3" data-title="Biblioteca" data-img="assets/3_biblioteca.JPG" data-audio-image="assets/3_biblioteca.mp3" data-audio-only="assets/3_biblioteca_audio.mp3" aria-label="Biblioteca"></button>
+          <button class="hotspot" style="--x:21.5; --y:26.0; --w:7.6; --h:8.8;" data-id="4" data-title="Campo Exterior" data-img="assets/4_campo_exterior.JPG" data-audio-image="assets/4_campo_exterior.mp3" data-audio-only="assets/4_campo_exterior_audio.mp3" aria-label="Campo Exterior"></button>
+          <button class="hotspot" style="--x:44.5; --y:69.8; --w:7.6; --h:8.8;" data-id="5" data-title="Cantina" data-img="assets/5_cantina.JPG" data-audio-image="assets/5_cantina.mp3" data-audio-only="assets/5_cantina_audio.mp3" aria-label="Cantina"></button>
+          <button class="hotspot" style="--x:47.7; --y:58.3; --w:7.6; --h:8.8;" data-id="6" data-title="Convívio" data-img="assets/6_convivio.jpg" data-audio-image="assets/6_convivio.mp3" data-audio-only="assets/6_convivio_audio.mp3" aria-label="Convívio"></button>
+          <button class="hotspot" style="--x:65.0; --y:68.3; --w:7.6; --h:8.8;" data-id="7" data-title="Portão" data-img="assets/7_portao.JPG" data-audio-image="assets/7_portao.mp3" data-audio-only="assets/7_portao_audio.mp3" aria-label="Portão"></button>
+          <button class="hotspot" style="--x:52.7; --y:20.0; --w:7.6; --h:8.8;" data-id="8" data-title="Laboratórios" data-img="assets/8_laboratorios.JPG" data-audio-image="assets/8_laboratorios.mp3" data-audio-only="assets/8_laboratorios_audio.mp3" aria-label="Laboratórios"></button>
+          <button class="hotspot" style="--x:80.5; --y:41.0; --w:7.6; --h:8.8;" data-id="9" data-title="Páteo" data-img="assets/9_pateo.JPG" data-audio-image="assets/9_pateo.mp3" data-audio-only="assets/9_pateo_audio.mp3" aria-label="Páteo"></button>
+          <button class="hotspot" style="--x:24.4; --y:70.6; --w:7.6; --h:8.8;" data-id="10" data-title="Pavilhão Gimnodesportivo" data-img="assets/10_pavilhao_gimnodesportivo.JPG" data-audio-image="assets/10_pavilhao_gimnodesportivo.mp3" data-audio-only="assets/10_pavilhao_gimnodesportivo_audio.mp3" aria-label="Pavilhão Gimnodesportivo"></button>
+          <button class="hotspot" style="--x:40.4; --y:46.0; --w:7.6; --h:8.8;" data-id="11" data-title="Reprografia" data-img="assets/11_reprografia.JPG" data-audio-image="assets/11_reprografia.mp3" data-audio-only="assets/11_reprografia_audio.mp3" aria-label="Reprografia"></button>
+          <button class="hotspot" style="--x:42.6; --y:29.0; --w:7.6; --h:8.8;" data-id="12" data-title="Sala de Artes" data-img="assets/12_sala_artes.png" data-audio-image="assets/12_sala_artes.mp3" data-audio-only="assets/12_sala_artes_audio.mp3" aria-label="Sala de Artes"></button>
+          <button class="hotspot" style="--x:83.0; --y:19.0; --w:7.6; --h:8.8;" data-id="13" data-title="Sala de Informática" data-img="assets/13_sala_informatica.JPG" data-audio-image="assets/13_sala_informatica.mp3" data-audio-only="assets/13_sala_informatica_audio.mp3" aria-label="Sala de Informática"></button>
+          <button class="hotspot" style="--x:63.2; --y:45.0; --w:7.6; --h:8.8;" data-id="14" data-title="PBX" data-img="assets/14_pbx.JPG" data-audio-image="assets/14_pbx.mp3" data-audio-only="assets/14_pbx_audio.mp3" aria-label="PBX"></button>
+          <button class="hotspot" style="--x:48.5; --y:48.8; --w:7.6; --h:8.8;" data-id="15" data-title="WC’s" data-img="assets/15_wcs.JPG" data-audio-image="assets/15_wcs.mp3" data-audio-only="assets/15_wcs_audio.mp3" aria-label="WC’s"></button>
 
           <aside class="controls-panel" aria-label="Controlos da planta">
             <button id="legendToggle" class="legend-btn" type="button">Legenda</button>
@@ -497,6 +603,8 @@
       </header>
 
       <div class="content">
+        <div id="audio-question" class="audio-question hidden">Que espaço será este?</div>
+
         <img id="modal-img" src="" alt="">
 
         <audio id="modal-audio" class="hidden" controls preload="metadata">
@@ -505,8 +613,8 @@
         </audio>
 
         <div class="audio-note" id="audio-note">
-          <strong>Áudio em preparação</strong>
-          A locução deste espaço poderá ser acrescentada mais tarde.
+          <strong>Áudio indisponível</strong>
+          Não foi possível carregar o ficheiro de áudio deste espaço.
         </div>
       </div>
     </div>
@@ -522,6 +630,7 @@
       const modalAudio = document.getElementById('modal-audio');
       const modalAudioSource = document.getElementById('modal-audio-source');
       const audioNote = document.getElementById('audio-note');
+      const audioQuestion = document.getElementById('audio-question');
 
       const modeImageBtn = document.getElementById('modeImage');
       const modeAudioBtn = document.getElementById('modeAudio');
@@ -536,18 +645,26 @@
         currentMode = mode;
       }
 
+      function resetAudio() {
+        modalAudio.pause();
+        modalAudio.currentTime = 0;
+        modalAudio.classList.add('hidden');
+        modalAudioSource.src = '';
+        modalAudio.load();
+        audioNote.classList.remove('hidden');
+      }
+
       function openModal(btn) {
         const title = btn.dataset.title || 'Espaço';
         const img = btn.dataset.img || '';
         const id = btn.dataset.id || '';
-        const audio = btn.dataset.audio || '';
+        const audioImage = btn.dataset.audioImage || '';
+        const audioOnly = btn.dataset.audioOnly || '';
+        const selectedAudio = currentMode === 'image' ? audioImage : audioOnly;
 
         modal.classList.remove('audio-only');
-
-        modalAudio.pause();
-        modalAudio.currentTime = 0;
-        modalAudio.classList.add('hidden');
-        audioNote.classList.remove('hidden');
+        audioQuestion.classList.add('hidden');
+        resetAudio();
 
         if (currentMode === 'image') {
           modalTitle.textContent = id + '. ' + title;
@@ -555,22 +672,20 @@
           modalImg.alt = title;
         } else {
           modal.classList.add('audio-only');
-          modalTitle.textContent = '';
+          modalTitle.textContent = 'Modo áudio';
           modalImg.src = '';
           modalImg.alt = '';
+          audioQuestion.classList.remove('hidden');
         }
 
-        if (audio) {
-          modalAudioSource.src = audio;
+        if (selectedAudio) {
+          modalAudioSource.src = selectedAudio;
           modalAudio.load();
 
           modalAudio.oncanplay = function () {
             modalAudio.classList.remove('hidden');
             audioNote.classList.add('hidden');
-
-            modalAudio.play().catch(() => {
-            });
-
+            modalAudio.play().catch(() => {});
             modalAudio.oncanplay = null;
           };
 
@@ -591,8 +706,8 @@
         modalImg.src = '';
         modalImg.alt = '';
         modalTitle.textContent = 'Espaço';
-        modalAudio.pause();
-        modalAudio.currentTime = 0;
+        audioQuestion.classList.add('hidden');
+        resetAudio();
       }
 
       hotspots.forEach(btn => {
