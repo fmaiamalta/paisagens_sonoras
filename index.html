@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O som dos espaços. Narrativas de sustentabilidade.</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #f3f4f6;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111827;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 10px 16px 6px 16px;
+    }
+
+    .logo-topo {
+      width: 320px;
+      max-width: 38vw;
+      height: auto;
+      display: block;
+    }
+
+    .title-area {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.05;
+      letter-spacing: 0.2px;
+    }
+
+    .wrap {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .stage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-container {
+      position: relative;
+      width: fit-content;
+      height: fit-content;
+      max-width: 100%;
+      max-height: 100%;
+      flex: 0 1 auto;
+    }
+
+    .map-container img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: calc(100vw - 20px);
+      max-height: calc(100vh - 110px);
+    }
+
+    .legend-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .legend-label {
+      position: absolute;
+      left: calc(var(--x) * 1%);
+      top: calc(var(--y) * 1%);
+      transform: translate(-50%, 0);
+      color: #c25a12;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+      backdrop-filter: blur(1px);
+    }
+
+    .hotspot {
+      position: absolute;
+      left: calc(var(--x) * 1%);
+      top: calc(var(--y) * 1%);
+      width: calc(var(--w) * 1%);
+      height: calc(var(--h) * 1%);
+      transform: translate(-50%, -50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 0;
+      z-index: 10;
+    }
+
+    .hotspot:hover,
+    .hotspot:focus {
+      outline: none;
+      background: transparent;
+    }
+
+    body.show-hotspots .hotspot {
+      background: rgba(239, 68, 68, 0.22);
+      outline: 2px solid rgba(239, 68, 68, 0.95);
+    }
+
+    body.show-hotspots .hotspot:hover,
+    body.show-hotspots .hotspot:focus {
+      background: rgba(59, 130, 246, 0.22);
+      outline: 2px solid rgba(59, 130, 246, 0.95);
+    }
+
+    .controls-panel {
+      position: absolute;
+      right: 2.5%;
+      bottom: 5%;
+      z-index: 12;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .legend-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      background: #f2dfcf;
+      color: #5b4636;
+      border: 1px solid #d3ae8e;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .legend-btn:hover {
+      background: #ecd2bd;
+      border-color: #bf8d64;
+      color: #3f2f25;
+    }
+
+    .legend-btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(191, 141, 100, 0.20);
+    }
+
+    .mode-option {
+      position: relative;
+      display: block;
+    }
+
+    .mode-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .mode-label {
+      width: 100%;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mode-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #5b4636;
+      line-height: 1.2;
+      white-space: nowrap;
+      text-align: left;
+      flex: 1;
+    }
+
+    .mode-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1.5px solid #9ca3af;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,.08);
+      flex: 0 0 28px;
+    }
+
+    .mode-option input:checked + .mode-label .mode-dot {
+      background: #ef9738;
+      border-color: #9a5b19;
+    }
+
+    .mode-option input:focus + .mode-label .mode-dot {
+      box-shadow: 0 0 0 3px rgba(191, 141, 100, 0.20);
+    }
+
+    .mode-option:hover .mode-text {
+      color: #3f2f25;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(17, 24, 39, .72);
+      padding: 16px;
+      z-index: 20;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .card {
+      width: min(980px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .30);
+    }
+
+    .card header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: #111827;
+      color: #fff;
+      position: sticky;
+      top: 0;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .close {
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .content img {
+      width: 100%;
+      max-height: 68vh;
+      object-fit: contain;
+      background: #f9fafb;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    .audio-note {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #374151;
+    }
+
+    .audio-note strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .audio-only #modal-title,
+    .audio-only #modal-img,
+    .audio-only .audio-note {
+      display: none !important;
+    }
+
+    .audio-only .card {
+      width: min(520px, 100%);
+    }
+
+    .audio-only .content {
+      padding: 22px 16px;
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 12px 4px 12px;
+      }
+
+      .logo-topo {
+        width: min(92vw, 420px);
+        max-width: 92vw;
+      }
+
+      .title-area {
+        align-items: center;
+      }
+
+      .topbar h1 {
+        font-size: 24px;
+        text-align: center;
+        line-height: 1.15;
+      }
+
+      .map-container img {
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 170px);
+      }
+
+      .controls-panel {
+        right: 3%;
+        bottom: 4%;
+        align-items: stretch;
+      }
+
+      .legend-btn {
+        min-height: 36px;
+        font-size: 13px;
+        padding: 7px 16px;
+      }
+
+      .mode-label {
+        width: 100%;
+        min-height: 36px;
+        gap: 8px;
+      }
+
+      .mode-text {
+        font-size: 14px;
+      }
+
+      .mode-dot {
+        width: 24px;
+        height: 24px;
+        flex: 0 0 24px;
+      }
+
+      .legend-label {
+        font-size: 11px;
+        padding: 2px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <img src="assets/logo.jpg" alt="Logótipo República Portuguesa, Educação, Ciência e Inovação, e AEDD" class="logo-topo">
+
+    <div class="title-area">
+      <h1>O som dos espaços. Narrativas de sustentabilidade.</h1>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="stage" aria-label="Planta interativa da escola">
+      <div class="layout">
+        <div class="map-container">
+          <img src="assets/planta-final.png" alt="Planta da Escola Secundária D. Dinis com 15 espaços numerados.">
+
+          <div id="legendOverlay" class="legend-overlay hidden" aria-hidden="true">
+            <div class="legend-label" style="--x:54.0; --y:42.4;">Auditório</div>
+            <div class="legend-label" style="--x:39.6; --y:59.1;">Bar</div>
+            <div class="legend-label" style="--x:64.7; --y:58.8;">Biblioteca</div>
+            <div class="legend-label" style="--x:21.5; --y:29.2;">Campo Exterior</div>
+            <div class="legend-label" style="--x:44.6; --y:72.5;">Cantina</div>
+            <div class="legend-label" style="--x:48.1; --y:61.6;">Convívio</div>
+            <div class="legend-label" style="--x:65.8; --y:70.8;">Portão</div>
+            <div class="legend-label" style="--x:53.5; --y:23.2;">Laboratórios</div>
+            <div class="legend-label" style="--x:80.6; --y:45.0;">Páteo</div>
+            <div class="legend-label" style="--x:24.4; --y:74.0;">Pavilhão Gimnodesportivo</div>
+            <div class="legend-label" style="--x:40.8; --y:49.0;">Reprografia</div>
+            <div class="legend-label" style="--x:43.7; --y:32.3;">Sala de Artes</div>
+            <div class="legend-label" style="--x:83.8; --y:22.4;">Sala de Informática</div>
+            <div class="legend-label" style="--x:63.2; --y:48.6;">PBX</div>
+            <div class="legend-label" style="--x:48.9; --y:51.6;">WC’s</div>
+          </div>
+
+          <button class="hotspot" style="--x:53.0; --y:39.2; --w:7.6; --h:8.8;" data-id="1" data-title="Auditório" data-img="assets/1_auditorio.jpg" data-audio="assets/1_auditorio.mp3" aria-label="Auditório"></button>
+          <button class="hotspot" style="--x:39.2; --y:56.2; --w:7.6; --h:8.8;" data-id="2" data-title="Bar" data-img="assets/2_bar.JPG" data-audio="assets/2_bar.mp3" aria-label="Bar"></button>
+          <button class="hotspot" style="--x:63.9; --y:56.0; --w:7.6; --h:8.8;" data-id="3" data-title="Biblioteca" data-img="assets/3_biblioteca.JPG" data-audio="assets/3_biblioteca.mp3" aria-label="Biblioteca"></button>
+          <button class="hotspot" style="--x:21.5; --y:26.0; --w:7.6; --h:8.8;" data-id="4" data-title="Campo Exterior" data-img="assets/4_campo_exterior.JPG" data-audio="assets/4_campo_exterior.mp3" aria-label="Campo Exterior"></button>
+          <button class="hotspot" style="--x:44.5; --y:69.8; --w:7.6; --h:8.8;" data-id="5" data-title="Cantina" data-img="assets/5_cantina.JPG" data-audio="assets/5_cantina.mp3" aria-label="Cantina"></button>
+          <button class="hotspot" style="--x:47.7; --y:58.3; --w:7.6; --h:8.8;" data-id="6" data-title="Convívio" data-img="assets/6_convivio.jpg" data-audio="assets/6_convivio.mp3" aria-label="Convívio"></button>
+          <button class="hotspot" style="--x:65.0; --y:68.3; --w:7.6; --h:8.8;" data-id="7" data-title="Portão" data-img="assets/7_portao.JPG" data-audio="assets/7_portao.mp3" aria-label="Portão"></button>
+          <button class="hotspot" style="--x:52.7; --y:20.0; --w:7.6; --h:8.8;" data-id="8" data-title="Laboratórios" data-img="assets/8_laboratorios.JPG" data-audio="assets/8_laboratorios.mp3" aria-label="Laboratórios"></button>
+          <button class="hotspot" style="--x:80.5; --y:41.0; --w:7.6; --h:8.8;" data-id="9" data-title="Páteo" data-img="assets/9_pateo.JPG" data-audio="assets/9_pateo.mp3" aria-label="Páteo"></button>
+          <button class="hotspot" style="--x:24.4; --y:70.6; --w:7.6; --h:8.8;" data-id="10" data-title="Pavilhão Gimnodesportivo" data-img="assets/10_pavilhao_gimnodesportivo.JPG" data-audio="assets/10_pavilhao_gimnodesportivo.mp3" aria-label="Pavilhão Gimnodesportivo"></button>
+          <button class="hotspot" style="--x:40.4; --y:46.0; --w:7.6; --h:8.8;" data-id="11" data-title="Reprografia" data-img="assets/11_reprografia.JPG" data-audio="assets/11_reprografia.mp3" aria-label="Reprografia"></button>
+          <button class="hotspot" style="--x:42.6; --y:29.0; --w:7.6; --h:8.8;" data-id="12" data-title="Sala de Artes" data-img="assets/12_sala_artes.png" data-audio="assets/12_sala_artes.mp3" aria-label="Sala de Artes"></button>
+          <button class="hotspot" style="--x:83.0; --y:19.0; --w:7.6; --h:8.8;" data-id="13" data-title="Sala de Informática" data-img="assets/13_sala_informatica.JPG" data-audio="assets/13_sala_informatica.mp3" aria-label="Sala de Informática"></button>
+          <button class="hotspot" style="--x:63.2; --y:45.0; --w:7.6; --h:8.8;" data-id="14" data-title="PBX" data-img="assets/14_pbx.JPG" data-audio="assets/14_pbx.mp3" aria-label="PBX"></button>
+          <button class="hotspot" style="--x:48.5; --y:48.8; --w:7.6; --h:8.8;" data-id="15" data-title="WC’s" data-img="assets/15_wcs.JPG" data-audio="assets/15_wcs.mp3" aria-label="WC’s"></button>
+
+          <aside class="controls-panel" aria-label="Controlos da planta">
+            <button id="legendToggle" class="legend-btn" type="button">Legenda</button>
+
+            <label class="mode-option">
+              <input type="radio" name="modo" id="modeImage" checked>
+              <span class="mode-label">
+                <span class="mode-text">Modo imagem</span>
+                <span class="mode-dot" aria-hidden="true"></span>
+              </span>
+            </label>
+
+            <label class="mode-option">
+              <input type="radio" name="modo" id="modeAudio">
+              <span class="mode-label">
+                <span class="mode-text">Modo áudio</span>
+                <span class="mode-dot" aria-hidden="true"></span>
+              </span>
+            </label>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="card">
+      <header>
+        <h2 id="modal-title">Espaço</h2>
+        <button class="close" id="closeBtn" aria-label="Fechar">×</button>
+      </header>
+
+      <div class="content">
+        <img id="modal-img" src="" alt="">
+
+        <audio id="modal-audio" class="hidden" controls preload="metadata">
+          <source id="modal-audio-source" src="" type="audio/mpeg">
+          O seu navegador não suporta áudio.
+        </audio>
+
+        <div class="audio-note" id="audio-note">
+          <strong>Áudio em preparação</strong>
+          A locução deste espaço poderá ser acrescentada mais tarde.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const modal = document.getElementById('modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalImg = document.getElementById('modal-img');
+      const closeBtn = document.getElementById('closeBtn');
+
+      const modalAudio = document.getElementById('modal-audio');
+      const modalAudioSource = document.getElementById('modal-audio-source');
+      const audioNote = document.getElementById('audio-note');
+
+      const modeImageBtn = document.getElementById('modeImage');
+      const modeAudioBtn = document.getElementById('modeAudio');
+      const legendToggle = document.getElementById('legendToggle');
+      const legendOverlay = document.getElementById('legendOverlay');
+
+      const hotspots = document.querySelectorAll('.hotspot');
+
+      let currentMode = 'image';
+
+      function setMode(mode) {
+        currentMode = mode;
+      }
+
+      function openModal(btn) {
+        const title = btn.dataset.title || 'Espaço';
+        const img = btn.dataset.img || '';
+        const id = btn.dataset.id || '';
+        const audio = btn.dataset.audio || '';
+
+        modal.classList.remove('audio-only');
+
+        modalAudio.pause();
+        modalAudio.currentTime = 0;
+        modalAudio.classList.add('hidden');
+        audioNote.classList.remove('hidden');
+
+        if (currentMode === 'image') {
+          modalTitle.textContent = id + '. ' + title;
+          modalImg.src = img;
+          modalImg.alt = title;
+        } else {
+          modal.classList.add('audio-only');
+          modalTitle.textContent = '';
+          modalImg.src = '';
+          modalImg.alt = '';
+        }
+
+        if (audio) {
+          modalAudioSource.src = audio;
+          modalAudio.load();
+
+          modalAudio.oncanplay = function () {
+            modalAudio.classList.remove('hidden');
+            audioNote.classList.add('hidden');
+
+            modalAudio.play().catch(() => {
+            });
+
+            modalAudio.oncanplay = null;
+          };
+
+          modalAudio.onerror = function () {
+            modalAudio.classList.add('hidden');
+            audioNote.classList.remove('hidden');
+            modalAudio.onerror = null;
+          };
+        }
+
+        modal.classList.add('open');
+        history.replaceState(null, '', location.pathname + '?spot=' + id);
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.classList.remove('audio-only');
+        modalImg.src = '';
+        modalImg.alt = '';
+        modalTitle.textContent = 'Espaço';
+        modalAudio.pause();
+        modalAudio.currentTime = 0;
+      }
+
+      hotspots.forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn));
+      });
+
+      modeImageBtn.addEventListener('change', () => {
+        if (modeImageBtn.checked) setMode('image');
+      });
+
+      modeAudioBtn.addEventListener('change', () => {
+        if (modeAudioBtn.checked) setMode('audio');
+      });
+
+      legendToggle.addEventListener('click', () => {
+        legendOverlay.classList.toggle('hidden');
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'h' || e.key === 'H') {
+          document.body.classList.toggle('show-hotspots');
+        }
+        if (e.key === 'l' || e.key === 'L') {
+          legendOverlay.classList.toggle('hidden');
+        }
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const spot = params.get('spot');
+      if (spot) {
+        const target = document.querySelector('.hotspot[data-id="' + spot + '"]');
+        if (target) openModal(target);
+      }
+    })();
+  </script>
+</body>
+</html>
