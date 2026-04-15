@@ -661,7 +661,7 @@
             <button id="legendToggle" class="legend-btn" type="button">Legenda</button>
 
             <label class="mode-option">
-              <input type="radio" name="modo-desktop" id="modeImageDesktop" checked>
+              <input type="radio" name="modo-desktop" id="modeImageDesktop">
               <span class="mode-label">
                 <span class="mode-text">Modo imagem</span>
                 <span class="mode-dot" aria-hidden="true"></span>
@@ -669,7 +669,7 @@
             </label>
 
             <label class="mode-option">
-              <input type="radio" name="modo-desktop" id="modeAudioDesktop">
+              <input type="radio" name="modo-desktop" id="modeAudioDesktop" checked>
               <span class="mode-label">
                 <span class="mode-text">Modo áudio</span>
                 <span class="mode-dot" aria-hidden="true"></span>
@@ -680,7 +680,7 @@
           <div class="mobile-top-controls" aria-label="Controlos mobile">
             <div class="mobile-modes">
               <label class="mobile-mode-option">
-                <input type="radio" name="modo-mobile" id="modeImageMobile" checked>
+                <input type="radio" name="modo-mobile" id="modeImageMobile">
                 <span class="mobile-mode-label">
                   <span class="mobile-mode-text">Modo imagem</span>
                   <span class="mobile-mode-dot" aria-hidden="true"></span>
@@ -688,7 +688,7 @@
               </label>
 
               <label class="mobile-mode-option">
-                <input type="radio" name="modo-mobile" id="modeAudioMobile">
+                <input type="radio" name="modo-mobile" id="modeAudioMobile" checked>
                 <span class="mobile-mode-label">
                   <span class="mobile-mode-text">Modo áudio</span>
                   <span class="mobile-mode-dot" aria-hidden="true"></span>
@@ -787,7 +787,7 @@
 
       const hotspots = Array.from(document.querySelectorAll('.hotspot'));
 
-      let currentMode = 'image';
+      let currentMode = 'audio';
 
       function isMobileView() {
         return window.innerWidth <= 768;
@@ -980,13 +980,13 @@
 
       buildMobileGrid();
 
-      currentMode = 'image';
-      modeImageDesktop.checked = true;
-      modeAudioDesktop.checked = false;
-      modeImageMobile.checked = true;
-      modeAudioMobile.checked = false;
+      currentMode = 'audio';
+      modeImageDesktop.checked = false;
+      modeAudioDesktop.checked = true;
+      modeImageMobile.checked = false;
+      modeAudioMobile.checked = true;
 
-      syncModeControls('image');
+      syncModeControls('audio');
       updateLegendForDesktop();
     })();
   </script>
