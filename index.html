@@ -864,7 +864,6 @@
         }
 
         modal.classList.add('open');
-        history.replaceState(null, '', location.pathname + '?spot=' + id);
       }
 
       function openModal(btn) {
@@ -878,14 +877,16 @@
       }
 
       function closeModal() {
-        modal.classList.remove('open');
-        modal.classList.remove('audio-only');
-        modalImg.src = '';
-        modalImg.alt = '';
-        modalTitle.textContent = 'Espaço';
-        audioQuestion.classList.add('hidden');
-        resetAudio();
-      }
+  modal.classList.remove('open');
+  modal.classList.remove('audio-only');
+  modalImg.src = '';
+  modalImg.alt = '';
+  modalTitle.textContent = 'Espaço';
+  audioQuestion.classList.add('hidden');
+  resetAudio();
+
+  history.replaceState(null, '', location.pathname);
+}
 
       function buildMobileGrid() {
         mobileGrid.innerHTML = '';
@@ -990,12 +991,7 @@
       syncModeControls('image');
       updateLegendForDesktop();
 
-      const params = new URLSearchParams(window.location.search);
-      const spot = params.get('spot');
-      if (spot) {
-        const target = document.querySelector('.hotspot[data-id="' + spot + '"]');
-        if (target) openModal(target);
-      }
+      
     })();
   </script>
 </body>
