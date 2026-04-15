@@ -13,15 +13,15 @@
     }
 
     :root {
-  --control-width-desktop: 185px;
-  --control-width-tablet: 188px;
-  --accent: #ef9738;
-  --accent-dark: #9a5b19;
-  --soft: #f2dfcf;
-  --soft-border: #d3ae8e;
-  --text-brown: #5b4636;
-  --bg: #f3f4f6;
-}
+      --control-width-desktop: 185px;
+      --control-width-tablet: 178px;
+      --accent: #ef9738;
+      --accent-dark: #9a5b19;
+      --soft: #f2dfcf;
+      --soft-border: #d3ae8e;
+      --text-brown: #5b4636;
+      --bg: #f3f4f6;
+    }
 
     html, body {
       margin: 0;
@@ -165,39 +165,38 @@
       outline: 2px solid rgba(59, 130, 246, 0.95);
     }
 
-    /* Controlos desktop/tablet */
-   .controls-panel {
-  position: absolute;
-  right: 2.8%;
-  bottom: 4.4%;
-  z-index: 12;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  line-height: normal;
-  width: var(--control-width-desktop);
-}
+    .controls-panel {
+      position: absolute;
+      right: 2.8%;
+      bottom: 4.4%;
+      z-index: 12;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: normal;
+      width: var(--control-width-desktop);
+    }
 
     .legend-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--control-width-desktop);
-  min-height: 36px;
-  background: var(--soft);
-  color: var(--text-brown);
-  border: 1px solid var(--soft-border);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: center;
-  white-space: nowrap;
-}
-    
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--control-width-desktop);
+      min-height: 36px;
+      background: var(--soft);
+      color: var(--text-brown);
+      border: 1px solid var(--soft-border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
     .legend-btn:hover {
       background: #ecd2bd;
       border-color: #bf8d64;
@@ -210,10 +209,10 @@
     }
 
     .mode-option {
-  position: relative;
-  display: block;
-  width: var(--control-width-desktop);
-}
+      position: relative;
+      display: block;
+      width: var(--control-width-desktop);
+    }
 
     .mode-option input {
       position: absolute;
@@ -222,36 +221,37 @@
     }
 
     .mode-label {
-  width: var(--control-width-desktop);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0px;
-  min-height: 30px;
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-}
+      width: var(--control-width-desktop);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0px;
+      min-height: 30px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
 
     .mode-text {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-brown);
-  line-height: 1.15;
-  text-align: left;
-  flex: 1;
-}
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-brown);
+      line-height: 1.15;
+      text-align: left;
+      flex: 1;
+      margin-right: 2px;
+    }
 
     .mode-dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1.5px solid #9ca3af;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0,0,0,.08);
-  flex: 0 0 24px;
-}
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1.5px solid #9ca3af;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,.08);
+      flex: 0 0 22px;
+    }
 
     .mode-option input:checked + .mode-label .mode-dot {
       background: var(--accent);
@@ -266,7 +266,6 @@
       color: #3f2f25;
     }
 
-    /* Controlos mobile */
     .mobile-top-controls {
       display: none;
       margin: 0 0 10px 0;
@@ -371,7 +370,6 @@
       box-shadow: 0 0 0 3px rgba(191, 141, 100, 0.20);
     }
 
-    /* Modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -490,71 +488,72 @@
     }
 
     @media (max-width: 900px) {
-  .topbar {
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px 12px 4px 12px;
-  }
+      .topbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 12px 4px 12px;
+      }
 
-  .logo-topo {
-    width: min(92vw, 420px);
-    max-width: 92vw;
-  }
+      .logo-topo {
+        width: min(92vw, 420px);
+        max-width: 92vw;
+      }
 
-  .title-area {
-    align-items: center;
-  }
+      .title-area {
+        align-items: center;
+      }
 
-  .topbar h1 {
-    font-size: 24px;
-    text-align: center;
-    line-height: 1.15;
-  }
+      .topbar h1 {
+        font-size: 24px;
+        text-align: center;
+        line-height: 1.15;
+      }
 
-  .map-container img {
-    max-width: calc(100vw - 20px);
-    max-height: calc(100vh - 165px);
-  }
+      .map-container img {
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 165px);
+      }
 
-  .controls-panel {
-    right: 2.4%;
-    bottom: 3.8%;
-    gap: 6px;
-    width: var(--control-width-tablet);
-  }
+      .controls-panel {
+        right: 2.4%;
+        bottom: 3.8%;
+        gap: 6px;
+        width: var(--control-width-tablet);
+      }
 
-  .legend-btn {
-    width: var(--control-width-tablet);
-    min-height: 32px;
-    font-size: 13px;
-    padding: 6px 12px;
-  }
+      .legend-btn {
+        width: var(--control-width-tablet);
+        min-height: 32px;
+        font-size: 13px;
+        padding: 6px 12px;
+      }
 
-  .mode-option {
-    width: var(--control-width-tablet);
-  }
+      .mode-option {
+        width: var(--control-width-tablet);
+      }
 
-  .mode-label {
-    width: var(--control-width-tablet);
-    gap: 4px;
-    min-height: 28px;
-  }
+      .mode-label {
+        width: var(--control-width-tablet);
+        gap: 0px;
+        min-height: 28px;
+      }
 
-  .mode-text {
-    font-size: 14px;
-  }
+      .mode-text {
+        font-size: 14px;
+        margin-right: 2px;
+      }
 
-  .mode-dot {
-    width: 22px;
-    height: 22px;
-    flex: 0 0 22px;
-  }
+      .mode-dot {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 22px;
+      }
 
-  .legend-label {
-    font-size: 11px;
-    padding: 2px 6px;
-  }
-}
+      .legend-label {
+        font-size: 11px;
+        padding: 2px 6px;
+      }
+    }
 
     @media (max-width: 768px) {
       html, body {
@@ -658,7 +657,6 @@
       <div class="layout">
         <div class="map-container">
 
-          <!-- Controlos desktop/tablet -->
           <aside class="controls-panel" aria-label="Controlos da planta">
             <button id="legendToggle" class="legend-btn" type="button">Legenda</button>
 
@@ -679,7 +677,6 @@
             </label>
           </aside>
 
-          <!-- Controlos mobile -->
           <div class="mobile-top-controls" aria-label="Controlos mobile">
             <div class="mobile-modes">
               <label class="mobile-mode-option">
@@ -805,11 +802,6 @@
         modeAudioMobile.checked = mode === 'audio';
 
         buildMobileGrid();
-
-        if (mode === 'audio') {
-          legendOverlay.classList.add('hidden');
-          legendOverlay.setAttribute('aria-hidden', 'true');
-        }
       }
 
       function resetAudio() {
@@ -819,6 +811,22 @@
         modalAudioSource.src = '';
         modalAudio.load();
         audioNote.classList.remove('hidden');
+      }
+
+      function updateLegendForDesktop() {
+        if (isMobileView()) {
+          legendOverlay.classList.add('hidden');
+          legendOverlay.setAttribute('aria-hidden', 'true');
+          return;
+        }
+
+        if (currentMode === 'image') {
+          legendOverlay.classList.remove('hidden');
+          legendOverlay.setAttribute('aria-hidden', 'false');
+        } else {
+          legendOverlay.classList.add('hidden');
+          legendOverlay.setAttribute('aria-hidden', 'true');
+        }
       }
 
       function openModalFromData(data) {
@@ -877,16 +885,15 @@
       }
 
       function closeModal() {
-  modal.classList.remove('open');
-  modal.classList.remove('audio-only');
-  modalImg.src = '';
-  modalImg.alt = '';
-  modalTitle.textContent = 'Espaço';
-  audioQuestion.classList.add('hidden');
-  resetAudio();
-
-  history.replaceState(null, '', location.pathname);
-}
+        modal.classList.remove('open');
+        modal.classList.remove('audio-only');
+        modalImg.src = '';
+        modalImg.alt = '';
+        modalTitle.textContent = 'Espaço';
+        audioQuestion.classList.add('hidden');
+        resetAudio();
+        history.replaceState(null, '', location.pathname);
+      }
 
       function buildMobileGrid() {
         mobileGrid.innerHTML = '';
@@ -908,22 +915,6 @@
           button.addEventListener('click', () => openModal(btn));
           mobileGrid.appendChild(button);
         });
-      }
-
-      function updateLegendForDesktop() {
-        if (isMobileView()) {
-          legendOverlay.classList.add('hidden');
-          legendOverlay.setAttribute('aria-hidden', 'true');
-          return;
-        }
-
-        if (currentMode === 'image') {
-          legendOverlay.classList.remove('hidden');
-          legendOverlay.setAttribute('aria-hidden', 'false');
-        } else {
-          legendOverlay.classList.add('hidden');
-          legendOverlay.setAttribute('aria-hidden', 'true');
-        }
       }
 
       hotspots.forEach(btn => {
@@ -988,10 +979,15 @@
       });
 
       buildMobileGrid();
+
+      currentMode = 'image';
+      modeImageDesktop.checked = true;
+      modeAudioDesktop.checked = false;
+      modeImageMobile.checked = true;
+      modeAudioMobile.checked = false;
+
       syncModeControls('image');
       updateLegendForDesktop();
-
-      
     })();
   </script>
 </body>
