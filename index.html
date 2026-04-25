@@ -37,12 +37,14 @@
     }
 
     .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      padding: 10px 16px 6px;
-    }
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 10px 10px 6px;
+}
 
     .logo-topo {
       width: 320px;
@@ -58,14 +60,22 @@
     }
 
     .topbar h1 {
-      margin: 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 34px;
-      font-weight: 700;
-      color: #111827;
-      line-height: 1.05;
-      letter-spacing: 0.2px;
-    }
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.05;
+}
+
+.topbar h2 {
+  margin: 2px 0 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #5b4636;
+  line-height: 1.1;
+}
 
     .wrap {
       flex: 1;
@@ -618,9 +628,9 @@
   <header class="topbar">
     <img src="assets/logo.jpg" alt="Logótipo República Portuguesa, Educação, Ciência e Inovação, e AEDD" class="logo-topo">
     <div class="title-area">
-      <h1>Paisagens Sonoras da D. Dinis<br>
-      O Som dos Espaços. Narrativas de Sustentabilidade</h1>
-    </div>
+  <h1>Paisagens Sonoras da D. Dinis</h1>
+  <h2>O Som dos Espaços. Narrativas de Sustentabilidade</h2>
+</div>
   </header>
 
   <div class="wrap">
