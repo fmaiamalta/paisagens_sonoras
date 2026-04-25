@@ -8,9 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --control-width-desktop: 185px;
@@ -39,12 +37,11 @@
     }
 
     .topbar {
-      flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 18px;
-      padding: 10px 16px 6px 16px;
+      padding: 10px 16px 6px;
     }
 
     .logo-topo {
@@ -68,25 +65,17 @@
       color: #111827;
       line-height: 1.05;
       letter-spacing: 0.2px;
-      text-align: left;
     }
 
     .wrap {
       flex: 1;
-      min-height: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 10px 10px 10px;
+      padding: 8px 10px 10px;
     }
 
-    .stage {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
+    .stage,
     .layout {
       width: 100%;
       display: flex;
@@ -106,7 +95,6 @@
       height: auto;
       max-width: calc(100vw - 20px);
       max-height: calc(100vh - 110px);
-      line-height: normal;
     }
 
     .legend-overlay {
@@ -128,9 +116,8 @@
       white-space: nowrap;
       padding: 2px 8px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255,255,255,.78);
       box-shadow: 0 1px 3px rgba(0,0,0,.06);
-      backdrop-filter: blur(1px);
     }
 
     .hotspot {
@@ -148,23 +135,6 @@
       z-index: 10;
     }
 
-    .hotspot:hover,
-    .hotspot:focus {
-      outline: none;
-      background: transparent;
-    }
-
-    body.show-hotspots .hotspot {
-      background: rgba(239, 68, 68, 0.22);
-      outline: 2px solid rgba(239, 68, 68, 0.95);
-    }
-
-    body.show-hotspots .hotspot:hover,
-    body.show-hotspots .hotspot:focus {
-      background: rgba(59, 130, 246, 0.22);
-      outline: 2px solid rgba(59, 130, 246, 0.95);
-    }
-
     .controls-panel {
       position: absolute;
       right: 2.8%;
@@ -178,7 +148,8 @@
       width: var(--control-width-desktop);
     }
 
-    .legend-btn {
+    .legend-btn,
+    .credits-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -192,20 +163,15 @@
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
       text-align: center;
       white-space: nowrap;
     }
 
-    .legend-btn:hover {
+    .legend-btn:hover,
+    .credits-btn:hover {
       background: #ecd2bd;
       border-color: #bf8d64;
       color: #3f2f25;
-    }
-
-    .legend-btn:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(191, 141, 100, 0.20);
     }
 
     .mode-option {
@@ -225,7 +191,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0px;
+      gap: 0;
       min-height: 30px;
       cursor: pointer;
       user-select: none;
@@ -237,7 +203,6 @@
       font-weight: 600;
       color: var(--text-brown);
       line-height: 1.15;
-      text-align: left;
       flex: 1;
       margin-right: 2px;
     }
@@ -246,9 +211,8 @@
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: #ffffff;
+      background: #fff;
       border: 1.5px solid #9ca3af;
-      transition: all 0.2s ease;
       box-shadow: 0 1px 2px rgba(0,0,0,.08);
       flex: 0 0 22px;
     }
@@ -258,17 +222,9 @@
       border-color: var(--accent-dark);
     }
 
-    .mode-option input:focus + .mode-label .mode-dot {
-      box-shadow: 0 0 0 3px rgba(191, 141, 100, 0.20);
-    }
-
-    .mode-option:hover .mode-text {
-      color: #3f2f25;
-    }
-
     .mobile-top-controls {
       display: none;
-      margin: 0 0 10px 0;
+      margin: 0 0 10px;
       width: 100%;
       line-height: normal;
     }
@@ -306,18 +262,16 @@
       font-size: 13px;
       font-weight: 600;
       color: var(--text-brown);
-      line-height: 1.2;
     }
 
     .mobile-mode-dot {
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: #ffffff;
+      background: #fff;
       border: 1.5px solid #9ca3af;
       box-shadow: 0 1px 2px rgba(0,0,0,.08);
       flex: 0 0 18px;
-      transition: all 0.2s ease;
     }
 
     .mobile-mode-option input:checked + .mobile-mode-label .mobile-mode-dot {
@@ -325,13 +279,9 @@
       border-color: var(--accent-dark);
     }
 
-    .mobile-mode-option:hover .mobile-mode-text {
-      color: #3f2f25;
-    }
-
     .mobile-grid {
       display: none;
-      margin: 12px 0 0 0;
+      margin: 12px 0 0;
       width: 100%;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
@@ -360,23 +310,13 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.05);
     }
 
-    .mobile-space-btn:hover {
-      background: #fffaf6;
-      border-color: #cf9a69;
-    }
-
-    .mobile-space-btn:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(191, 141, 100, 0.20);
-    }
-
     .modal {
       position: fixed;
       inset: 0;
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(17, 24, 39, .72);
+      background: rgba(17,24,39,.72);
       padding: 16px;
       z-index: 20;
     }
@@ -391,7 +331,11 @@
       overflow: auto;
       background: #fff;
       border-radius: 14px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, .30);
+      box-shadow: 0 20px 40px rgba(0,0,0,.30);
+    }
+
+    .card.small {
+      width: min(720px, 100%);
     }
 
     .card header {
@@ -403,6 +347,7 @@
       color: #fff;
       position: sticky;
       top: 0;
+      z-index: 2;
     }
 
     .card h2 {
@@ -449,20 +394,68 @@
       line-height: 1.4;
     }
 
-    .audio-note strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #111827;
-    }
-
     .audio-question {
       text-align: center;
       font-family: "Cormorant Garamond", serif;
       font-size: 28px;
       font-weight: 700;
       color: var(--text-brown);
-      margin: 2px 0 2px 0;
+      margin: 2px 0;
       line-height: 1.2;
+    }
+
+    .specific-credits {
+      font-size: 13px;
+      color: #4b5563;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 10px 12px;
+      line-height: 1.5;
+    }
+
+    .specific-credits strong {
+      color: #111827;
+    }
+
+    .credits-content {
+      padding: 18px;
+      line-height: 1.55;
+      color: #1f2937;
+    }
+
+    .credits-content h3 {
+      margin: 18px 0 8px;
+      font-size: 17px;
+      color: var(--text-brown);
+    }
+
+    .credits-content h3:first-child {
+      margin-top: 0;
+    }
+
+    .credits-content p {
+      margin: 4px 0;
+    }
+
+    .credits-list {
+      columns: 2;
+      column-gap: 28px;
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .credits-list li {
+      break-inside: avoid;
+      margin-bottom: 3px;
+    }
+
+    .music-credit {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-top: 8px;
     }
 
     .hidden {
@@ -470,7 +463,8 @@
     }
 
     .audio-only #modal-img,
-    .audio-only .audio-note {
+    .audio-only .audio-note,
+    .audio-only .specific-credits {
       display: none !important;
     }
 
@@ -491,7 +485,7 @@
       .topbar {
         flex-direction: column;
         gap: 10px;
-        padding: 10px 12px 4px 12px;
+        padding: 10px 12px 4px;
       }
 
       .logo-topo {
@@ -521,26 +515,22 @@
         width: var(--control-width-tablet);
       }
 
-      .legend-btn {
+      .legend-btn,
+      .credits-btn,
+      .mode-option,
+      .mode-label {
         width: var(--control-width-tablet);
+      }
+
+      .legend-btn,
+      .credits-btn {
         min-height: 32px;
         font-size: 13px;
         padding: 6px 12px;
       }
 
-      .mode-option {
-        width: var(--control-width-tablet);
-      }
-
-      .mode-label {
-        width: var(--control-width-tablet);
-        gap: 0px;
-        min-height: 28px;
-      }
-
       .mode-text {
         font-size: 14px;
-        margin-right: 2px;
       }
 
       .mode-dot {
@@ -561,7 +551,7 @@
       }
 
       .wrap {
-        padding: 4px 8px 10px 8px;
+        padding: 4px 8px 10px;
       }
 
       .stage,
@@ -599,51 +589,13 @@
         pointer-events: none;
       }
 
-      .audio-question {
-        font-size: 24px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .topbar {
-        gap: 8px;
-        padding: 8px 10px 4px 10px;
-      }
-
-      .topbar h1 {
-        font-size: 21px;
-      }
-
-      .mobile-modes {
-        gap: 10px;
-      }
-
-      .mobile-mode-text {
-        font-size: 12px;
-      }
-
-      .mobile-mode-dot {
-        width: 17px;
-        height: 17px;
-        flex: 0 0 17px;
-      }
-
-      .mobile-space-btn {
-        font-size: 13px;
-        min-height: 40px;
-        padding: 9px 10px;
-      }
-
-      .card h2 {
-        font-size: 18px;
-      }
-
-      .audio-question {
-        font-size: 21px;
+      .credits-list {
+        columns: 1;
       }
     }
   </style>
 </head>
+
 <body>
   <header class="topbar">
     <img src="assets/logo.jpg" alt="Logótipo República Portuguesa, Educação, Ciência e Inovação, e AEDD" class="logo-topo">
@@ -658,6 +610,7 @@
         <div class="map-container">
 
           <aside class="controls-panel" aria-label="Controlos da planta">
+            <button id="creditsToggle" class="credits-btn" type="button">Créditos</button>
             <button id="legendToggle" class="legend-btn" type="button">Legenda</button>
 
             <label class="mode-option">
@@ -694,6 +647,8 @@
                   <span class="mobile-mode-dot" aria-hidden="true"></span>
                 </span>
               </label>
+
+              <button id="creditsToggleMobile" class="credits-btn" type="button">Créditos</button>
             </div>
 
             <div id="mobileGrid" class="mobile-grid show" aria-label="Lista de espaços mobile"></div>
@@ -719,46 +674,98 @@
             <div class="legend-label" style="--x:48.9; --y:51.6;">WC’s</div>
           </div>
 
-          <button class="hotspot" style="--x:53.0; --y:39.2; --w:7.6; --h:8.8;" data-id="1" data-title="Auditório" data-img="assets/1_auditorio.jpg" data-audio-image="assets/1_auditorio.mp3" data-audio-only="assets/1_auditorio_audio.mp3" aria-label="Auditório"></button>
-          <button class="hotspot" style="--x:39.2; --y:56.2; --w:7.6; --h:8.8;" data-id="2" data-title="Bar" data-img="assets/2_bar.JPG" data-audio-image="assets/2_bar.mp3" data-audio-only="assets/2_bar_audio.mp3" aria-label="Bar"></button>
-          <button class="hotspot" style="--x:63.9; --y:56.0; --w:7.6; --h:8.8;" data-id="3" data-title="Biblioteca" data-img="assets/3_biblioteca.JPG" data-audio-image="assets/3_biblioteca.mp3" data-audio-only="assets/3_biblioteca_audio.mp3" aria-label="Biblioteca"></button>
-          <button class="hotspot" style="--x:21.5; --y:26.0; --w:7.6; --h:8.8;" data-id="4" data-title="Campo Exterior" data-img="assets/4_campo_exterior.JPG" data-audio-image="assets/4_campo_exterior.mp3" data-audio-only="assets/4_campo_exterior_audio.mp3" aria-label="Campo Exterior"></button>
-          <button class="hotspot" style="--x:44.5; --y:69.8; --w:7.6; --h:8.8;" data-id="5" data-title="Cantina" data-img="assets/5_cantina.JPG" data-audio-image="assets/5_cantina.mp3" data-audio-only="assets/5_cantina_audio.mp3" aria-label="Cantina"></button>
-          <button class="hotspot" style="--x:47.7; --y:58.3; --w:7.6; --h:8.8;" data-id="6" data-title="Convívio" data-img="assets/6_convivio.jpg" data-audio-image="assets/6_convivio.mp3" data-audio-only="assets/6_convivio_audio.mp3" aria-label="Convívio"></button>
-          <button class="hotspot" style="--x:65.0; --y:68.3; --w:7.6; --h:8.8;" data-id="7" data-title="Portão" data-img="assets/7_portao.JPG" data-audio-image="assets/7_portao.mp3" data-audio-only="assets/7_portao_audio.mp3" aria-label="Portão"></button>
-          <button class="hotspot" style="--x:52.7; --y:20.0; --w:7.6; --h:8.8;" data-id="8" data-title="Laboratórios" data-img="assets/8_laboratorios.JPG" data-audio-image="assets/8_laboratorios.mp3" data-audio-only="assets/8_laboratorios_audio.mp3" aria-label="Laboratórios"></button>
-          <button class="hotspot" style="--x:80.5; --y:41.0; --w:7.6; --h:8.8;" data-id="9" data-title="Páteo" data-img="assets/9_pateo.JPG" data-audio-image="assets/9_pateo.mp3" data-audio-only="assets/9_pateo_audio.mp3" aria-label="Páteo"></button>
-          <button class="hotspot" style="--x:24.4; --y:70.6; --w:7.6; --h:8.8;" data-id="10" data-title="Pavilhão Gimnodesportivo" data-img="assets/10_pavilhao_gimnodesportivo.JPG" data-audio-image="assets/10_pavilhao_gimnodesportivo.mp3" data-audio-only="assets/10_pavilhao_gimnodesportivo_audio.mp3" aria-label="Pavilhão Gimnodesportivo"></button>
-          <button class="hotspot" style="--x:40.4; --y:46.0; --w:7.6; --h:8.8;" data-id="11" data-title="Reprografia" data-img="assets/11_reprografia.JPG" data-audio-image="assets/11_reprografia.mp3" data-audio-only="assets/11_reprografia_audio.mp3" aria-label="Reprografia"></button>
-          <button class="hotspot" style="--x:42.6; --y:29.0; --w:7.6; --h:8.8;" data-id="12" data-title="Sala de Artes" data-img="assets/12_sala_artes.png" data-audio-image="assets/12_sala_artes.mp3" data-audio-only="assets/12_sala_artes_audio.mp3" aria-label="Sala de Artes"></button>
-          <button class="hotspot" style="--x:83.0; --y:19.0; --w:7.6; --h:8.8;" data-id="13" data-title="Sala de Informática" data-img="assets/13_sala_informatica.JPG" data-audio-image="assets/13_sala_informatica.mp3" data-audio-only="assets/13_sala_informatica_audio.mp3" aria-label="Sala de Informática"></button>
-          <button class="hotspot" style="--x:63.2; --y:45.0; --w:7.6; --h:8.8;" data-id="14" data-title="PBX" data-img="assets/14_pbx.JPG" data-audio-image="assets/14_pbx.mp3" data-audio-only="assets/14_pbx_audio.mp3" aria-label="PBX"></button>
-          <button class="hotspot" style="--x:48.5; --y:48.8; --w:7.6; --h:8.8;" data-id="15" data-title="WC’s" data-img="assets/15_wcs.JPG" data-audio-image="assets/15_wcs.mp3" data-audio-only="assets/15_wcs_audio.mp3" aria-label="WC’s"></button>
+          <button class="hotspot" style="--x:53.0; --y:39.2; --w:7.6; --h:8.8;" data-id="1" data-title="Auditório" data-img="assets/1_auditorio.jpg" data-audio-image="assets/1_auditorio.mp3" data-audio-only="assets/1_auditorio_audio.mp3" data-photo-credit="Agrupamento de Escolas D. Dinis" data-voice-credit="Lia Moreira"></button>
+          <button class="hotspot" style="--x:39.2; --y:56.2; --w:7.6; --h:8.8;" data-id="2" data-title="Bar" data-img="assets/2_bar.JPG" data-audio-image="assets/2_bar.mp3" data-audio-only="assets/2_bar_audio.mp3" data-photo-credit="Lucas Soares" data-voice-credit="Lucas Soares"></button>
+          <button class="hotspot" style="--x:63.9; --y:56.0; --w:7.6; --h:8.8;" data-id="3" data-title="Biblioteca" data-img="assets/3_biblioteca.JPG" data-audio-image="assets/3_biblioteca.mp3" data-audio-only="assets/3_biblioteca_audio.mp3" data-photo-credit="Lia Moreira" data-voice-credit="Mariana Jesus"></button>
+          <button class="hotspot" style="--x:21.5; --y:26.0; --w:7.6; --h:8.8;" data-id="4" data-title="Campo Exterior" data-img="assets/4_campo_exterior.JPG" data-audio-image="assets/4_campo_exterior.mp3" data-audio-only="assets/4_campo_exterior_audio.mp3" data-photo-credit="Mariana Jesus" data-voice-credit="Carolina Lemos · Diogo Neves"></button>
+          <button class="hotspot" style="--x:44.5; --y:69.8; --w:7.6; --h:8.8;" data-id="5" data-title="Cantina" data-img="assets/5_cantina.JPG" data-audio-image="assets/5_cantina.mp3" data-audio-only="assets/5_cantina_audio.mp3" data-photo-credit="Beatriz Batista" data-voice-credit="Margarida Domingos"></button>
+          <button class="hotspot" style="--x:47.7; --y:58.3; --w:7.6; --h:8.8;" data-id="6" data-title="Convívio" data-img="assets/6_convivio.jpg" data-audio-image="assets/6_convivio.mp3" data-audio-only="assets/6_convivio_audio.mp3" data-photo-credit="Beatriz Batista" data-voice-credit="Carolina Lemos"></button>
+          <button class="hotspot" style="--x:65.0; --y:68.3; --w:7.6; --h:8.8;" data-id="7" data-title="Portão" data-img="assets/7_portao.JPG" data-audio-image="assets/7_portao.mp3" data-audio-only="assets/7_portao_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Fernanda Meneses"></button>
+          <button class="hotspot" style="--x:52.7; --y:20.0; --w:7.6; --h:8.8;" data-id="8" data-title="Laboratórios" data-img="assets/8_laboratorios.JPG" data-audio-image="assets/8_laboratorios.mp3" data-audio-only="assets/8_laboratorios_audio.mp3" data-photo-credit="Martim Catarino" data-voice-credit="Hugo Leitão"></button>
+          <button class="hotspot" style="--x:80.5; --y:41.0; --w:7.6; --h:8.8;" data-id="9" data-title="Páteo" data-img="assets/9_pateo.JPG" data-audio-image="assets/9_pateo.mp3" data-audio-only="assets/9_pateo_audio.mp3" data-photo-credit="Iara Alves" data-voice-credit="Mariana Jesus"></button>
+          <button class="hotspot" style="--x:24.4; --y:70.6; --w:7.6; --h:8.8;" data-id="10" data-title="Pavilhão Gimnodesportivo" data-img="assets/10_pavilhao_gimnodesportivo.JPG" data-audio-image="assets/10_pavilhao_gimnodesportivo.mp3" data-audio-only="assets/10_pavilhao_gimnodesportivo_audio.mp3" data-photo-credit="Iara Alves" data-voice-credit="Leonardo Carvalho"></button>
+          <button class="hotspot" style="--x:40.4; --y:46.0; --w:7.6; --h:8.8;" data-id="11" data-title="Reprografia" data-img="assets/11_reprografia.JPG" data-audio-image="assets/11_reprografia.mp3" data-audio-only="assets/11_reprografia_audio.mp3" data-photo-credit="Lucas Soares" data-voice-credit="Leandro Pereira"></button>
+          <button class="hotspot" style="--x:42.6; --y:29.0; --w:7.6; --h:8.8;" data-id="12" data-title="Sala de Artes" data-img="assets/12_sala_artes.png" data-audio-image="assets/12_sala_artes.mp3" data-audio-only="assets/12_sala_artes_audio.mp3" data-photo-credit="Tiago Lopes" data-voice-credit="Martim Silva"></button>
+          <button class="hotspot" style="--x:83.0; --y:19.0; --w:7.6; --h:8.8;" data-id="13" data-title="Sala de Informática" data-img="assets/13_sala_informatica.JPG" data-audio-image="assets/13_sala_informatica.mp3" data-audio-only="assets/13_sala_informatica_audio.mp3" data-photo-credit="Martim Catarino" data-voice-credit="Martim Catarino"></button>
+          <button class="hotspot" style="--x:63.2; --y:45.0; --w:7.6; --h:8.8;" data-id="14" data-title="PBX" data-img="assets/14_pbx.JPG" data-audio-image="assets/14_pbx.mp3" data-audio-only="assets/14_pbx_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Mariana Jesus"></button>
+          <button class="hotspot" style="--x:48.5; --y:48.8; --w:7.6; --h:8.8;" data-id="15" data-title="WC’s" data-img="assets/15_wcs.JPG" data-audio-image="assets/15_wcs.mp3" data-audio-only="assets/15_wcs_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Vagner Monteiro"></button>
         </div>
       </div>
     </section>
   </div>
 
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal">
     <div class="card">
       <header>
         <h2 id="modal-title">Espaço</h2>
-        <button class="close" id="closeBtn" aria-label="Fechar">×</button>
+        <button class="close" id="closeBtn">×</button>
       </header>
 
       <div class="content">
         <div id="audio-question" class="audio-question hidden">Que espaço será este?</div>
-
         <img id="modal-img" src="" alt="">
-
         <audio id="modal-audio" class="hidden" controls preload="metadata">
           <source id="modal-audio-source" src="" type="audio/mpeg">
-          O seu navegador não suporta áudio.
         </audio>
-
         <div class="audio-note" id="audio-note">
           <strong>Áudio indisponível</strong>
           Não foi possível carregar o ficheiro de áudio deste espaço.
+        </div>
+        <div id="specificCredits" class="specific-credits hidden"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="creditsModal">
+    <div class="card small">
+      <header>
+        <h2>Créditos</h2>
+        <button class="close" id="closeCreditsBtn">×</button>
+      </header>
+
+      <div class="credits-content">
+        <h3>Projeto</h3>
+        <p><strong>O som dos espaços. Narrativas de sustentabilidade.</strong></p>
+        <p><strong>Turmas:</strong> 12AV e 12E</p>
+        <p><strong>Professor cooperante:</strong> António Ramos</p>
+
+        <h3>Textos, captação e pós-produção</h3>
+        <ul class="credits-list">
+          <li>Beatriz Batista</li>
+          <li>Carolina Lemos</li>
+          <li>Carolina Barros</li>
+          <li>Diogo Neves</li>
+          <li>Fernanda Meneses</li>
+          <li>Helena Miguel</li>
+          <li>Hugo Leitão</li>
+          <li>Iara Alves</li>
+          <li>Inês Costa</li>
+          <li>Leandro Pereira</li>
+          <li>Leonardo Carvalho</li>
+          <li>Lia Moreira</li>
+          <li>Lucas Soares</li>
+          <li>Margarida Domingos</li>
+          <li>Maria Oliveira</li>
+          <li>Mariana Jesus</li>
+          <li>Martim Silva</li>
+          <li>Martim Catarino</li>
+          <li>Raquel Sanches</li>
+          <li>Tiago Lopes</li>
+          <li>Vagner Monteiro</li>
+        </ul>
+
+        <h3>Ambientes sonoros extra</h3>
+        <p>Freesound.org</p>
+
+        <h3>Excertos de música</h3>
+        <div class="music-credit">
+          <p><strong>Auditório</strong> — “Funk Rock - bpm 88 loop”, de DenKyschuk.</p>
+          <p>Fonte: Freesound.org · Licença: Attribution NonCommercial 4.0</p>
+        </div>
+
+        <div class="music-credit">
+          <p><strong>Convívio</strong> — “Judas e Dalilas”, de Sam the Kid.</p>
+          <p>Excerto utilizado com autorização do artista, antigo aluno da Escola Secundária D. Dinis.</p>
         </div>
       </div>
     </div>
@@ -770,11 +777,16 @@
       const modalTitle = document.getElementById('modal-title');
       const modalImg = document.getElementById('modal-img');
       const closeBtn = document.getElementById('closeBtn');
-
       const modalAudio = document.getElementById('modal-audio');
       const modalAudioSource = document.getElementById('modal-audio-source');
       const audioNote = document.getElementById('audio-note');
       const audioQuestion = document.getElementById('audio-question');
+      const specificCredits = document.getElementById('specificCredits');
+
+      const creditsModal = document.getElementById('creditsModal');
+      const creditsToggle = document.getElementById('creditsToggle');
+      const creditsToggleMobile = document.getElementById('creditsToggleMobile');
+      const closeCreditsBtn = document.getElementById('closeCreditsBtn');
 
       const modeImageDesktop = document.getElementById('modeImageDesktop');
       const modeAudioDesktop = document.getElementById('modeAudioDesktop');
@@ -786,7 +798,6 @@
       const mobileGrid = document.getElementById('mobileGrid');
 
       const hotspots = Array.from(document.querySelectorAll('.hotspot'));
-
       let currentMode = 'audio';
 
       function isMobileView() {
@@ -795,12 +806,10 @@
 
       function syncModeControls(mode) {
         currentMode = mode;
-
         modeImageDesktop.checked = mode === 'image';
         modeAudioDesktop.checked = mode === 'audio';
         modeImageMobile.checked = mode === 'image';
         modeAudioMobile.checked = mode === 'audio';
-
         buildMobileGrid();
       }
 
@@ -814,37 +823,37 @@
       }
 
       function updateLegendForDesktop() {
-        if (isMobileView()) {
+        if (isMobileView() || currentMode === 'audio') {
           legendOverlay.classList.add('hidden');
           legendOverlay.setAttribute('aria-hidden', 'true');
-          return;
-        }
-
-        if (currentMode === 'image') {
+        } else {
           legendOverlay.classList.remove('hidden');
           legendOverlay.setAttribute('aria-hidden', 'false');
-        } else {
-          legendOverlay.classList.add('hidden');
-          legendOverlay.setAttribute('aria-hidden', 'true');
         }
       }
 
-      function openModalFromData(data) {
-        const title = data.title || 'Espaço';
-        const img = data.img || '';
-        const id = data.id || '';
-        const audioImage = data.audioImage || '';
-        const audioOnly = data.audioOnly || '';
+      function openModal(btn) {
+        const id = btn.dataset.id || '';
+        const title = btn.dataset.title || '';
+        const img = btn.dataset.img || '';
+        const audioImage = btn.dataset.audioImage || '';
+        const audioOnly = btn.dataset.audioOnly || '';
         const selectedAudio = currentMode === 'image' ? audioImage : audioOnly;
 
         modal.classList.remove('audio-only');
         audioQuestion.classList.add('hidden');
+        specificCredits.classList.add('hidden');
         resetAudio();
 
         if (currentMode === 'image') {
           modalTitle.textContent = id + '. ' + title;
           modalImg.src = img;
           modalImg.alt = title;
+
+          specificCredits.innerHTML =
+            '<strong>Fotografia:</strong> ' + (btn.dataset.photoCredit || '—') +
+            '<br><strong>Locução:</strong> ' + (btn.dataset.voiceCredit || '—');
+          specificCredits.classList.remove('hidden');
         } else {
           modal.classList.add('audio-only');
           modalTitle.textContent = 'Modo áudio';
@@ -874,16 +883,6 @@
         modal.classList.add('open');
       }
 
-      function openModal(btn) {
-        openModalFromData({
-          id: btn.dataset.id || '',
-          title: btn.dataset.title || '',
-          img: btn.dataset.img || '',
-          audioImage: btn.dataset.audioImage || '',
-          audioOnly: btn.dataset.audioOnly || ''
-        });
-      }
-
       function closeModal() {
         modal.classList.remove('open');
         modal.classList.remove('audio-only');
@@ -891,6 +890,7 @@
         modalImg.alt = '';
         modalTitle.textContent = 'Espaço';
         audioQuestion.classList.add('hidden');
+        specificCredits.classList.add('hidden');
         resetAudio();
         history.replaceState(null, '', location.pathname);
       }
@@ -905,23 +905,16 @@
           const button = document.createElement('button');
           button.type = 'button';
           button.className = 'mobile-space-btn';
-
-          if (currentMode === 'image') {
-            button.textContent = id + '. ' + title;
-          } else {
-            button.textContent = id;
-          }
-
+          button.textContent = currentMode === 'image' ? id + '. ' + title : id;
           button.addEventListener('click', () => openModal(btn));
+
           mobileGrid.appendChild(button);
         });
       }
 
       hotspots.forEach(btn => {
         btn.addEventListener('click', () => {
-          if (!isMobileView()) {
-            openModal(btn);
-          }
+          if (!isMobileView()) openModal(btn);
         });
       });
 
@@ -940,24 +933,24 @@
       });
 
       modeImageMobile.addEventListener('change', () => {
-        if (modeImageMobile.checked) {
-          syncModeControls('image');
-        }
+        if (modeImageMobile.checked) syncModeControls('image');
       });
 
       modeAudioMobile.addEventListener('change', () => {
-        if (modeAudioMobile.checked) {
-          syncModeControls('audio');
-        }
+        if (modeAudioMobile.checked) syncModeControls('audio');
       });
 
       legendToggle.addEventListener('click', () => {
         if (isMobileView()) return;
         legendOverlay.classList.toggle('hidden');
-        legendOverlay.setAttribute(
-          'aria-hidden',
-          legendOverlay.classList.contains('hidden') ? 'true' : 'false'
-        );
+      });
+
+      creditsToggle.addEventListener('click', () => creditsModal.classList.add('open'));
+      creditsToggleMobile.addEventListener('click', () => creditsModal.classList.add('open'));
+      closeCreditsBtn.addEventListener('click', () => creditsModal.classList.remove('open'));
+
+      creditsModal.addEventListener('click', (e) => {
+        if (e.target === creditsModal) creditsModal.classList.remove('open');
       });
 
       closeBtn.addEventListener('click', closeModal);
@@ -967,9 +960,9 @@
       });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-        if (e.key === 'h' || e.key === 'H') {
-          document.body.classList.toggle('show-hotspots');
+        if (e.key === 'Escape') {
+          closeModal();
+          creditsModal.classList.remove('open');
         }
       });
 
@@ -977,14 +970,6 @@
         buildMobileGrid();
         updateLegendForDesktop();
       });
-
-      buildMobileGrid();
-
-      currentMode = 'audio';
-      modeImageDesktop.checked = false;
-      modeAudioDesktop.checked = true;
-      modeImageMobile.checked = false;
-      modeAudioMobile.checked = true;
 
       syncModeControls('audio');
       updateLegendForDesktop();
