@@ -562,56 +562,55 @@
       }
     }
 
-    @media (max-width: 768px) {
+   @media (max-width: 768px) {
   .turmas-grid {
     grid-template-columns: 1fr;
     gap: 18px;
   }
+
+  .wrap {
+    padding: 4px 8px 10px;
+  }
+
+  .stage,
+  .layout {
+    display: block;
+  }
+
+  .map-container {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    line-height: normal;
+  }
+
+  .controls-panel {
+    display: none;
+  }
+
+  .mobile-top-controls {
+    display: block;
+  }
+
+  .map-container img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .legend-overlay {
+    display: none !important;
+  }
+
+  .hotspot {
+    pointer-events: none;
+  }
+
+  .credits-list {
+    columns: 1;
+  }
 }
-
-      .wrap {
-        padding: 4px 8px 10px;
-      }
-
-      .stage,
-      .layout {
-        display: block;
-      }
-
-      .map-container {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        line-height: normal;
-      }
-
-      .controls-panel {
-        display: none;
-      }
-
-      .mobile-top-controls {
-        display: block;
-      }
-
-      .map-container img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        max-height: none;
-      }
-
-      .legend-overlay {
-        display: none !important;
-      }
-
-      .hotspot {
-        pointer-events: none;
-      }
-
-      .credits-list {
-        columns: 1;
-      }
-    }
   </style>
 </head>
 
