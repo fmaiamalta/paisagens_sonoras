@@ -1041,14 +1041,11 @@
       }
 
       function updateLegendForDesktop() {
-        if (isMobileView() || currentMode === 'audio') {
-          legendOverlay.classList.add('hidden');
-          legendOverlay.setAttribute('aria-hidden', 'true');
-        } else {
-          legendOverlay.classList.remove('hidden');
-          legendOverlay.setAttribute('aria-hidden', 'false');
-        }
-      }
+  if (isMobileView()) {
+    legendOverlay.classList.add('hidden');
+    legendOverlay.setAttribute('aria-hidden', 'true');
+  }
+}
 
       function openModal(btn) {
         const id = btn.dataset.id || '';
@@ -1160,15 +1157,14 @@
       });
 
       legendToggle.addEventListener('click', () => {
-        if (isMobileView()) return;
-        if (currentMode !== 'image') return;
+  if (isMobileView()) return;
 
-        legendOverlay.classList.toggle('hidden');
-        legendOverlay.setAttribute(
-          'aria-hidden',
-          legendOverlay.classList.contains('hidden') ? 'true' : 'false'
-        );
-      });
+  legendOverlay.classList.toggle('hidden');
+  legendOverlay.setAttribute(
+    'aria-hidden',
+    legendOverlay.classList.contains('hidden') ? 'true' : 'false'
+  );
+});
 
       creditsToggle.addEventListener('click', () => {
         creditsModal.classList.add('open');
