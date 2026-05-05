@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>O som dos espaços. Narrativas de sustentabilidade.</title>
+  <title>Paisagens Sonoras da D. Dinis</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     :root {
       --control-width-desktop: 185px;
@@ -37,17 +39,17 @@
     }
 
     .topbar {
-  width: min(100%, 1100px);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 10px 10px 6px;
-}
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 10px 10px 6px;
+    }
 
     .logo-topo {
-      width: 320px;
+      width: 300px;
       max-width: 38vw;
       height: auto;
       display: block;
@@ -60,40 +62,47 @@
     }
 
     .topbar h1 {
-  margin: 0;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: #111827;
-  line-height: 1.05;
-}
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.05;
+    }
 
-.topbar h2 {
-  margin: 2px 0 0 0;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 19px;
-  font-weight: 600;
-  color: #5b4636;
-  line-height: 1.1;
-}
+    .topbar h2 {
+      margin: 2px 0 0 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: #5b4636;
+      line-height: 1.1;
+    }
 
     .headphones-note {
-  margin: 6px 0 0 0;
-  font-size: 13px;
-  color: #6b7280;
-  line-height: 1.4;
-  max-width: 520px;
-}
-    
+      margin: 6px 0 0 0;
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.4;
+      max-width: 560px;
+    }
+
     .wrap {
       flex: 1;
+      min-height: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 10px 10px;
+      padding: 8px 10px 10px 10px;
     }
 
-    .stage,
+    .stage {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .layout {
       width: 100%;
       display: flex;
@@ -112,7 +121,8 @@
       width: auto;
       height: auto;
       max-width: calc(100vw - 20px);
-      max-height: calc(100vh - 110px);
+      max-height: calc(100vh - 120px);
+      line-height: normal;
     }
 
     .legend-overlay {
@@ -134,8 +144,9 @@
       white-space: nowrap;
       padding: 2px 8px;
       border-radius: 999px;
-      background: rgba(255,255,255,.78);
+      background: rgba(255, 255, 255, 0.78);
       box-shadow: 0 1px 3px rgba(0,0,0,.06);
+      backdrop-filter: blur(1px);
     }
 
     .hotspot {
@@ -151,6 +162,12 @@
       border-radius: 8px;
       padding: 0;
       z-index: 10;
+    }
+
+    .hotspot:hover,
+    .hotspot:focus {
+      outline: none;
+      background: transparent;
     }
 
     .controls-panel {
@@ -181,6 +198,7 @@
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.2s ease;
       text-align: center;
       white-space: nowrap;
     }
@@ -221,6 +239,7 @@
       font-weight: 600;
       color: var(--text-brown);
       line-height: 1.15;
+      text-align: left;
       flex: 1;
       margin-right: 2px;
     }
@@ -229,8 +248,9 @@
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: #fff;
+      background: #ffffff;
       border: 1.5px solid #9ca3af;
+      transition: all 0.2s ease;
       box-shadow: 0 1px 2px rgba(0,0,0,.08);
       flex: 0 0 22px;
     }
@@ -242,7 +262,7 @@
 
     .mobile-top-controls {
       display: none;
-      margin: 0 0 10px;
+      margin: 0 0 10px 0;
       width: 100%;
       line-height: normal;
     }
@@ -280,16 +300,18 @@
       font-size: 13px;
       font-weight: 600;
       color: var(--text-brown);
+      line-height: 1.2;
     }
 
     .mobile-mode-dot {
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: #fff;
+      background: #ffffff;
       border: 1.5px solid #9ca3af;
       box-shadow: 0 1px 2px rgba(0,0,0,.08);
       flex: 0 0 18px;
+      transition: all 0.2s ease;
     }
 
     .mobile-mode-option input:checked + .mobile-mode-label .mobile-mode-dot {
@@ -299,7 +321,7 @@
 
     .mobile-grid {
       display: none;
-      margin: 12px 0 0;
+      margin: 12px 0 0 0;
       width: 100%;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
@@ -331,16 +353,23 @@
     .modal {
       position: fixed;
       inset: 0;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(17,24,39,.72);
+      background: rgba(17, 24, 39, 0);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, background 0.25s ease, visibility 0.25s ease;
       padding: 16px;
       z-index: 20;
     }
 
     .modal.open {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      background: rgba(17, 24, 39, 0.72);
     }
 
     .card {
@@ -349,7 +378,15 @@
       overflow: auto;
       background: #fff;
       border-radius: 14px;
-      box-shadow: 0 20px 40px rgba(0,0,0,.30);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .30);
+      transform: translateY(14px) scale(0.98);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .modal.open .card {
+      transform: translateY(0) scale(1);
+      opacity: 1;
     }
 
     .card.small {
@@ -357,29 +394,30 @@
     }
 
     .card header {
+      background: #111827;
+      color: white;
+      padding: 16px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 18px;
-      background: #111827;
-      color: #fff;
       position: sticky;
       top: 0;
       z-index: 2;
     }
 
-    .card h2 {
+    .card header h2 {
       margin: 0;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
       line-height: 1.2;
     }
 
-    .close {
+    .close,
+    .card header button {
       border: none;
       background: transparent;
       color: #fff;
-      font-size: 28px;
+      font-size: 30px;
       line-height: 1;
       cursor: pointer;
     }
@@ -412,13 +450,19 @@
       line-height: 1.4;
     }
 
+    .audio-note strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
     .audio-question {
       text-align: center;
       font-family: "Cormorant Garamond", serif;
       font-size: 28px;
       font-weight: 700;
       color: var(--text-brown);
-      margin: 2px 0;
+      margin: 2px 0 2px 0;
       line-height: 1.2;
     }
 
@@ -437,70 +481,77 @@
     }
 
     .credits-content {
-      padding: 18px;
-      line-height: 1.55;
+      padding: 24px 26px 28px;
+      line-height: 1.65;
       color: #1f2937;
+      font-size: 15px;
     }
 
-    .credits-content a {
-  color: #5b4636;
-  text-decoration: underline;
-  font-weight: 600;
-}
-
-.credits-content a:hover {
-  color: #9a5b19;
-}
     .credits-content h3 {
-      margin: 18px 0 8px;
-      font-size: 17px;
-      color: var(--text-brown);
+      margin: 30px 16px 14px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #5b4636;
+      letter-spacing: 0.2px;
     }
 
     .credits-content h3:first-child {
       margin-top: 0;
     }
-    
+
     .credits-content h4 {
-  margin: 12px 0 4px;
-  font-size: 15px;
-  color: #111827;
-}
+      margin: 0 0 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
 
     .credits-content p {
-      margin: 4px 0;
+      margin: 5px 16px;
+    }
+
+    .credits-content a {
+      color: #5b4636;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 600;
+    }
+
+    .credits-content a:hover {
+      color: #9a5b19;
     }
 
     .turmas-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 10px;
-}
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      margin: 12px 16px 0;
+    }
 
-.turma-column h4 {
-  margin: 0 0 8px;
-  font-size: 15px;
-  color: #111827;
-}
+    .credits-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
 
-.credits-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.credits-list li {
-  margin-bottom: 4px;
-}
+    .credits-list li {
+      margin-bottom: 5px;
+    }
 
     .music-credit {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin: 12px 16px 16px 16px;
-}
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin: 14px 16px 18px;
+    }
+
+    .music-credit p {
+      margin: 6px 0;
+    }
 
     .hidden {
       display: none !important;
@@ -529,7 +580,7 @@
       .topbar {
         flex-direction: column;
         gap: 10px;
-        padding: 10px 12px 4px;
+        padding: 10px 12px 4px 12px;
       }
 
       .logo-topo {
@@ -542,18 +593,21 @@
       }
 
       .topbar h1 {
-  font-size: 22px;
-}
+        font-size: 22px;
+        text-align: center;
+        line-height: 1.15;
+      }
 
-.topbar h2 {
-  font-size: 16px;
-}
+      .topbar h2 {
+        font-size: 16px;
+        text-align: center;
+      }
 
       .headphones-note {
-  text-align: center;
-  font-size: 12px;
-  max-width: 100%;
-}
+        text-align: center;
+        font-size: 12px;
+        max-width: 100%;
+      }
 
       .map-container img {
         max-width: calc(100vw - 20px);
@@ -597,69 +651,138 @@
       }
     }
 
-   @media (max-width: 768px) {
-  .turmas-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
 
-  .wrap {
-    padding: 4px 8px 10px;
-  }
+      .wrap {
+        padding: 4px 8px 10px;
+      }
 
-  .stage,
-  .layout {
-    display: block;
-  }
+      .stage,
+      .layout {
+        display: block;
+      }
 
-  .map-container {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    line-height: normal;
-  }
+      .map-container {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        line-height: normal;
+      }
 
-  .controls-panel {
-    display: none;
-  }
+      .controls-panel {
+        display: none;
+      }
 
-  .mobile-top-controls {
-    display: block;
-  }
+      .mobile-top-controls {
+        display: block;
+      }
 
-  .map-container img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    max-height: none;
-  }
+      .mobile-top-controls .credits-btn {
+        width: auto;
+        min-height: 30px;
+        padding: 5px 12px;
+        font-size: 12px;
+      }
 
-  .legend-overlay {
-    display: none !important;
-  }
+      .map-container img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+      }
 
-  .hotspot {
-    pointer-events: none;
-  }
+      .legend-overlay {
+        display: none !important;
+      }
 
-  .credits-list {
-    columns: 1;
-  }
-}
+      .hotspot {
+        pointer-events: none;
+      }
+
+      .turmas-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .credits-content {
+        padding: 20px 18px 24px;
+      }
+
+      .credits-content h3 {
+        margin: 26px 10px 12px;
+        font-size: 22px;
+      }
+
+      .credits-content p {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .music-credit {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .topbar {
+        gap: 8px;
+        padding: 8px 10px 4px 10px;
+      }
+
+      .topbar h1 {
+        font-size: 21px;
+      }
+
+      .topbar h2 {
+        font-size: 15px;
+      }
+
+      .mobile-modes {
+        gap: 10px;
+      }
+
+      .mobile-mode-text {
+        font-size: 12px;
+      }
+
+      .mobile-mode-dot {
+        width: 17px;
+        height: 17px;
+        flex: 0 0 17px;
+      }
+
+      .mobile-space-btn {
+        font-size: 13px;
+        min-height: 40px;
+        padding: 9px 10px;
+      }
+
+      .card header h2 {
+        font-size: 20px;
+      }
+
+      .audio-question {
+        font-size: 21px;
+      }
+    }
   </style>
 </head>
 
 <body>
   <header class="topbar">
     <img src="assets/logo.jpg" alt="Logótipo República Portuguesa, Educação, Ciência e Inovação, e AEDD" class="logo-topo">
-    <div class="title-area">
-  <h1>Paisagens Sonoras da D. Dinis</h1>
-  <h2>O Som dos Espaços. Narrativas de Sustentabilidade</h2>
 
-  <p class="headphones-note">
-    Para uma experiência sonora imersiva, recomenda-se a utilização de auscultadores.
-  </p>
-</div>
+    <div class="title-area">
+      <h1>Paisagens Sonoras da D. Dinis</h1>
+      <h2>O Som dos Espaços. Narrativas de Sustentabilidade</h2>
+      <p class="headphones-note">
+        Este projeto foi concebido para uma escuta atenta. Para uma experiência mais imersiva, recomendamos a utilização de auscultadores.
+      </p>
+    </div>
   </header>
 
   <div class="wrap">
@@ -732,134 +855,133 @@
             <div class="legend-label" style="--x:48.9; --y:51.6;">WC’s</div>
           </div>
 
-          <button class="hotspot" style="--x:53.0; --y:39.2; --w:7.6; --h:8.8;" data-id="1" data-title="Auditório" data-img="assets/1_auditorio.jpg" data-audio-image="assets/1_auditorio.mp3" data-audio-only="assets/1_auditorio_audio.mp3" data-photo-credit="Lia Moreira" data-voice-credit="Lia Moreira"></button>
-          <button class="hotspot" style="--x:39.2; --y:56.2; --w:7.6; --h:8.8;" data-id="2" data-title="Bar" data-img="assets/2_bar.JPG" data-audio-image="assets/2_bar.mp3" data-audio-only="assets/2_bar_audio.mp3" data-photo-credit="Lucas Soares" data-voice-credit="Lucas Soares"></button>
-          <button class="hotspot" style="--x:63.9; --y:56.0; --w:7.6; --h:8.8;" data-id="3" data-title="Biblioteca" data-img="assets/3_biblioteca.JPG" data-audio-image="assets/3_biblioteca.mp3" data-audio-only="assets/3_biblioteca_audio.mp3" data-photo-credit="Lia Moreira" data-voice-credit="Mariana Jesus"></button>
-          <button class="hotspot" style="--x:21.5; --y:26.0; --w:7.6; --h:8.8;" data-id="4" data-title="Campo Exterior" data-img="assets/4_campo_exterior.JPG" data-audio-image="assets/4_campo_exterior.mp3" data-audio-only="assets/4_campo_exterior_audio.mp3" data-photo-credit="Mariana Jesus" data-voice-credit="Carolina Lemos · Diogo Neves"></button>
-          <button class="hotspot" style="--x:44.5; --y:69.8; --w:7.6; --h:8.8;" data-id="5" data-title="Cantina" data-img="assets/5_cantina.JPG" data-audio-image="assets/5_cantina.mp3" data-audio-only="assets/5_cantina_audio.mp3" data-photo-credit="Beatriz Batista" data-voice-credit="Margarida Domingos"></button>
-          <button class="hotspot" style="--x:47.7; --y:58.3; --w:7.6; --h:8.8;" data-id="6" data-title="Convívio" data-img="assets/6_convivio.jpg" data-audio-image="assets/6_convivio.mp3" data-audio-only="assets/6_convivio_audio.mp3" data-photo-credit="Beatriz Batista" data-voice-credit="Carolina Lemos"></button>
-          <button class="hotspot" style="--x:65.0; --y:68.3; --w:7.6; --h:8.8;" data-id="7" data-title="Portão" data-img="assets/7_portao.JPG" data-audio-image="assets/7_portao.mp3" data-audio-only="assets/7_portao_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Fernanda Meneses"></button>
-          <button class="hotspot" style="--x:52.7; --y:20.0; --w:7.6; --h:8.8;" data-id="8" data-title="Laboratórios" data-img="assets/8_laboratorios.JPG" data-audio-image="assets/8_laboratorios.mp3" data-audio-only="assets/8_laboratorios_audio.mp3" data-photo-credit="Martim Catarino" data-voice-credit="Hugo Leitão"></button>
-          <button class="hotspot" style="--x:80.5; --y:41.0; --w:7.6; --h:8.8;" data-id="9" data-title="Páteo" data-img="assets/9_pateo.JPG" data-audio-image="assets/9_pateo.mp3" data-audio-only="assets/9_pateo_audio.mp3" data-photo-credit="Iara Alves" data-voice-credit="Mariana Jesus"></button>
-          <button class="hotspot" style="--x:24.4; --y:70.6; --w:7.6; --h:8.8;" data-id="10" data-title="Pavilhão Gimnodesportivo" data-img="assets/10_pavilhao_gimnodesportivo.JPG" data-audio-image="assets/10_pavilhao_gimnodesportivo.mp3" data-audio-only="assets/10_pavilhao_gimnodesportivo_audio.mp3" data-photo-credit="Iara Alves" data-voice-credit="Leonardo Carvalho"></button>
-          <button class="hotspot" style="--x:40.4; --y:46.0; --w:7.6; --h:8.8;" data-id="11" data-title="Reprografia" data-img="assets/11_reprografia.JPG" data-audio-image="assets/11_reprografia.mp3" data-audio-only="assets/11_reprografia_audio.mp3" data-photo-credit="Lucas Soares" data-voice-credit="Leandro Pereira"></button>
-          <button class="hotspot" style="--x:42.6; --y:29.0; --w:7.6; --h:8.8;" data-id="12" data-title="Sala de Artes" data-img="assets/12_sala_artes.png" data-audio-image="assets/12_sala_artes.mp3" data-audio-only="assets/12_sala_artes_audio.mp3" data-photo-credit="Tiago Lopes" data-voice-credit="Martim Silva"></button>
-          <button class="hotspot" style="--x:83.0; --y:19.0; --w:7.6; --h:8.8;" data-id="13" data-title="Sala de Informática" data-img="assets/13_sala_informatica.JPG" data-audio-image="assets/13_sala_informatica.mp3" data-audio-only="assets/13_sala_informatica_audio.mp3" data-photo-credit="Martim Catarino" data-voice-credit="Martim Catarino"></button>
-          <button class="hotspot" style="--x:63.2; --y:45.0; --w:7.6; --h:8.8;" data-id="14" data-title="PBX" data-img="assets/14_pbx.JPG" data-audio-image="assets/14_pbx.mp3" data-audio-only="assets/14_pbx_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Mariana Jesus"></button>
-          <button class="hotspot" style="--x:48.5; --y:48.8; --w:7.6; --h:8.8;" data-id="15" data-title="WC’s" data-img="assets/15_wcs.JPG" data-audio-image="assets/15_wcs.mp3" data-audio-only="assets/15_wcs_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Vagner Monteiro"></button>
+          <button class="hotspot" style="--x:53.0; --y:39.2; --w:7.6; --h:8.8;" data-id="1" data-title="Auditório" data-img="assets/1_auditorio.jpg" data-audio-image="assets/1_auditorio.mp3" data-audio-only="assets/1_auditorio_audio.mp3" data-photo-credit="Agrupamento de Escolas D. Dinis" data-voice-credit="Lia Moreira" aria-label="Auditório"></button>
+          <button class="hotspot" style="--x:39.2; --y:56.2; --w:7.6; --h:8.8;" data-id="2" data-title="Bar" data-img="assets/2_bar.JPG" data-audio-image="assets/2_bar.mp3" data-audio-only="assets/2_bar_audio.mp3" data-photo-credit="Lucas Soares" data-voice-credit="Lucas Soares" aria-label="Bar"></button>
+          <button class="hotspot" style="--x:63.9; --y:56.0; --w:7.6; --h:8.8;" data-id="3" data-title="Biblioteca" data-img="assets/3_biblioteca.JPG" data-audio-image="assets/3_biblioteca.mp3" data-audio-only="assets/3_biblioteca_audio.mp3" data-photo-credit="Lia Moreira" data-voice-credit="Mariana Jesus" aria-label="Biblioteca"></button>
+          <button class="hotspot" style="--x:21.5; --y:26.0; --w:7.6; --h:8.8;" data-id="4" data-title="Campo Exterior" data-img="assets/4_campo_exterior.JPG" data-audio-image="assets/4_campo_exterior.mp3" data-audio-only="assets/4_campo_exterior_audio.mp3" data-photo-credit="Mariana Jesus" data-voice-credit="Carolina Lemos · Diogo Neves" aria-label="Campo Exterior"></button>
+          <button class="hotspot" style="--x:44.5; --y:69.8; --w:7.6; --h:8.8;" data-id="5" data-title="Cantina" data-img="assets/5_cantina.JPG" data-audio-image="assets/5_cantina.mp3" data-audio-only="assets/5_cantina_audio.mp3" data-photo-credit="Beatriz Batista" data-voice-credit="Margarida Domingos" aria-label="Cantina"></button>
+          <button class="hotspot" style="--x:47.7; --y:58.3; --w:7.6; --h:8.8;" data-id="6" data-title="Convívio" data-img="assets/6_convivio.jpg" data-audio-image="assets/6_convivio.mp3" data-audio-only="assets/6_convivio_audio.mp3" data-photo-credit="Beatriz Batista" data-voice-credit="Carolina Lemos" aria-label="Convívio"></button>
+          <button class="hotspot" style="--x:65.0; --y:68.3; --w:7.6; --h:8.8;" data-id="7" data-title="Portão" data-img="assets/7_portao.JPG" data-audio-image="assets/7_portao.mp3" data-audio-only="assets/7_portao_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Fernanda Meneses" aria-label="Portão"></button>
+          <button class="hotspot" style="--x:52.7; --y:20.0; --w:7.6; --h:8.8;" data-id="8" data-title="Laboratórios" data-img="assets/8_laboratorios.JPG" data-audio-image="assets/8_laboratorios.mp3" data-audio-only="assets/8_laboratorios_audio.mp3" data-photo-credit="Martim Catarino" data-voice-credit="Hugo Leitão" aria-label="Laboratórios"></button>
+          <button class="hotspot" style="--x:80.5; --y:41.0; --w:7.6; --h:8.8;" data-id="9" data-title="Páteo" data-img="assets/9_pateo.JPG" data-audio-image="assets/9_pateo.mp3" data-audio-only="assets/9_pateo_audio.mp3" data-photo-credit="Iara Alves" data-voice-credit="Mariana Jesus" aria-label="Páteo"></button>
+          <button class="hotspot" style="--x:24.4; --y:70.6; --w:7.6; --h:8.8;" data-id="10" data-title="Pavilhão Gimnodesportivo" data-img="assets/10_pavilhao_gimnodesportivo.JPG" data-audio-image="assets/10_pavilhao_gimnodesportivo.mp3" data-audio-only="assets/10_pavilhao_gimnodesportivo_audio.mp3" data-photo-credit="Iara Alves" data-voice-credit="Leonardo Carvalho" aria-label="Pavilhão Gimnodesportivo"></button>
+          <button class="hotspot" style="--x:40.4; --y:46.0; --w:7.6; --h:8.8;" data-id="11" data-title="Reprografia" data-img="assets/11_reprografia.JPG" data-audio-image="assets/11_reprografia.mp3" data-audio-only="assets/11_reprografia_audio.mp3" data-photo-credit="Lucas Soares" data-voice-credit="Leandro Pereira" aria-label="Reprografia"></button>
+          <button class="hotspot" style="--x:42.6; --y:29.0; --w:7.6; --h:8.8;" data-id="12" data-title="Sala de Artes" data-img="assets/12_sala_artes.png" data-audio-image="assets/12_sala_artes.mp3" data-audio-only="assets/12_sala_artes_audio.mp3" data-photo-credit="Tiago Lopes" data-voice-credit="Martim Silva" aria-label="Sala de Artes"></button>
+          <button class="hotspot" style="--x:83.0; --y:19.0; --w:7.6; --h:8.8;" data-id="13" data-title="Sala de Informática" data-img="assets/13_sala_informatica.JPG" data-audio-image="assets/13_sala_informatica.mp3" data-audio-only="assets/13_sala_informatica_audio.mp3" data-photo-credit="Martim Catarino" data-voice-credit="Martim Catarino" aria-label="Sala de Informática"></button>
+          <button class="hotspot" style="--x:63.2; --y:45.0; --w:7.6; --h:8.8;" data-id="14" data-title="PBX" data-img="assets/14_pbx.JPG" data-audio-image="assets/14_pbx.mp3" data-audio-only="assets/14_pbx_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Mariana Jesus" aria-label="PBX"></button>
+          <button class="hotspot" style="--x:48.5; --y:48.8; --w:7.6; --h:8.8;" data-id="15" data-title="WC’s" data-img="assets/15_wcs.JPG" data-audio-image="assets/15_wcs.mp3" data-audio-only="assets/15_wcs_audio.mp3" data-photo-credit="Carolina Barros" data-voice-credit="Vagner Monteiro" aria-label="WC’s"></button>
         </div>
       </div>
     </section>
   </div>
 
-  <div class="modal" id="modal">
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="card">
       <header>
         <h2 id="modal-title">Espaço</h2>
-        <button class="close" id="closeBtn">×</button>
+        <button class="close" id="closeBtn" aria-label="Fechar">×</button>
       </header>
 
       <div class="content">
         <div id="audio-question" class="audio-question hidden">Que espaço será este?</div>
+
         <img id="modal-img" src="" alt="">
+
         <audio id="modal-audio" class="hidden" controls preload="metadata">
           <source id="modal-audio-source" src="" type="audio/mpeg">
+          O seu navegador não suporta áudio.
         </audio>
+
         <div class="audio-note" id="audio-note">
           <strong>Áudio indisponível</strong>
           Não foi possível carregar o ficheiro de áudio deste espaço.
         </div>
+
         <div id="specificCredits" class="specific-credits hidden"></div>
       </div>
     </div>
   </div>
 
-  <div class="modal" id="creditsModal">
+  <div class="modal" id="creditsModal" role="dialog" aria-modal="true" aria-labelledby="credits-title">
     <div class="card small">
       <header>
-        <h2>Créditos</h2>
-        <button class="close" id="closeCreditsBtn">×</button>
+        <h2 id="credits-title">Créditos</h2>
+        <button class="close" id="closeCreditsBtn" aria-label="Fechar créditos">×</button>
       </header>
 
       <div class="credits-content">
         <h3>Projeto</h3>
         <p><strong>Paisagens Sonoras da D. Dinis</strong><br>
         O Som dos Espaços. Narrativas de Sustentabilidade</p>
+
         <p><strong>Turmas:</strong> 12AV e 12E</p>
-<p><strong>Professor:</strong> Filipe Malta</p>
-<p><strong>Professor cooperante:</strong> António Ramos</p>
+        <p><strong>Professor:</strong> Filipe Malta</p>
+        <p><strong>Professor cooperante:</strong> António Ramos</p>
 
-<h3>Textos, captação e pós-produção</h3>
+        <h3>Textos, captação e pós-produção</h3>
 
-<div class="turmas-grid">
+        <div class="turmas-grid">
+          <div class="turma-column">
+            <h4>12AV</h4>
+            <ul class="credits-list">
+              <li>Beatriz Batista</li>
+              <li>Carolina Barros</li>
+              <li>Fernanda Meneses</li>
+              <li>Helena Miguel</li>
+              <li>Inês Costa</li>
+              <li>Lia Moreira</li>
+              <li>Margarida Domingos</li>
+              <li>Mariana Jesus</li>
+              <li>Raquel Sanches</li>
+            </ul>
+          </div>
 
-  <div class="turma-column">
-    <h4>12AV</h4>
-    <ul class="credits-list">
-      <li>Beatriz Batista</li>
-      <li>Carolina Barros</li>
-      <li>Fernanda Meneses</li>
-      <li>Helena Miguel</li>
-      <li>Inês Costa</li>
-      <li>Lia Moreira</li>
-      <li>Margarida Domingos</li>
-      <li>Mariana Jesus</li>
-      <li>Raquel Sanches</li>
-    </ul>
-  </div>
-
-  <div class="turma-column">
-    <h4>12E</h4>
-    <ul class="credits-list">
-      <li>Carolina Lemos</li>
-      <li>Diogo Neves</li>
-      <li>Hugo Leitão</li>
-      <li>Iara Alves</li>
-      <li>Leandro Pereira</li>
-      <li>Leonardo Carvalho</li>
-      <li>Lucas Soares</li>
-      <li>Maria Oliveira</li>
-      <li>Martim Silva</li>
-      <li>Martim Catarino</li>
-      <li>Tiago Lopes</li>
-      <li>Vagner Monteiro</li>
-    </ul>
-  </div>
-
-</div>
+          <div class="turma-column">
+            <h4>12E</h4>
+            <ul class="credits-list">
+              <li>Carolina Lemos</li>
+              <li>Diogo Neves</li>
+              <li>Hugo Leitão</li>
+              <li>Iara Alves</li>
+              <li>Leandro Pereira</li>
+              <li>Leonardo Carvalho</li>
+              <li>Lucas Soares</li>
+              <li>Maria Oliveira</li>
+              <li>Martim Silva</li>
+              <li>Martim Catarino</li>
+              <li>Tiago Lopes</li>
+              <li>Vagner Monteiro</li>
+            </ul>
+          </div>
+        </div>
 
         <h3>Ambientes sonoros extra</h3>
         <p>
-  <a href="https://freesound.org/" target="_blank" rel="noopener noreferrer">
-    Freesound.org
-  </a>
-</p>
-
-        .credits-content h3 {
-  margin: 22px 0 10px;
-}
+          <a href="https://freesound.org/" target="_blank" rel="noopener noreferrer">
+            Freesound.org
+          </a>
+        </p>
 
         <h3>Equipamento</h3>
-          <p><strong>Áudio</strong></p>
-          <p>Microfone: Shure SM58</p>
-          <p>Gravador: Zoom H1n</p>
-          <p>Interface de áudio: Steinberg UR22 MK2</p>
-          <p><strong>Fotografia</strong></p>
-          <p>DSLR Canon EOS 750D</p>
-        </div>
-        
+        <p><strong>Áudio</strong></p>
+        <p>Microfone: Shure SM58</p>
+        <p>Gravador: Zoom H1n</p>
+        <p>Interface de áudio: Steinberg UR22 MK2</p>
+
+        <p><strong>Fotografia</strong></p>
+        <p>DSLR Canon EOS 750D</p>
+
         <h3>Excertos de música</h3>
+
         <div class="music-credit">
-          <p><strong>Auditório</strong> - “Funk Rock”, DenKyschuk.</p>
-          <p>Fonte: freesound.org · Licença: Attribution NonCommercial 4.0</p>
+          <p><strong>Auditório</strong> — “Funk Rock”, DenKyschuk</p>
+          <p>Fonte: Freesound.org · Licença: Attribution NonCommercial 4.0</p>
         </div>
 
         <div class="music-credit">
-          <p><strong>Convívio</strong> - “Judas e Dalilas”, Sam the Kid.</p>
+          <p><strong>Convívio</strong> — “Judas e Dalilas”, Sam the Kid</p>
           <p>Excerto utilizado com autorização do artista, antigo aluno da Escola Secundária D. Dinis.</p>
         </div>
-
-        
       </div>
     </div>
   </div>
@@ -870,6 +992,7 @@
       const modalTitle = document.getElementById('modal-title');
       const modalImg = document.getElementById('modal-img');
       const closeBtn = document.getElementById('closeBtn');
+
       const modalAudio = document.getElementById('modal-audio');
       const modalAudioSource = document.getElementById('modal-audio-source');
       const audioNote = document.getElementById('audio-note');
@@ -899,10 +1022,12 @@
 
       function syncModeControls(mode) {
         currentMode = mode;
+
         modeImageDesktop.checked = mode === 'image';
         modeAudioDesktop.checked = mode === 'audio';
         modeImageMobile.checked = mode === 'image';
         modeAudioMobile.checked = mode === 'audio';
+
         buildMobileGrid();
       }
 
@@ -946,6 +1071,7 @@
           specificCredits.innerHTML =
             '<strong>Fotografia:</strong> ' + (btn.dataset.photoCredit || '—') +
             '<br><strong>Locução:</strong> ' + (btn.dataset.voiceCredit || '—');
+
           specificCredits.classList.remove('hidden');
         } else {
           modal.classList.add('audio-only');
@@ -1035,15 +1161,31 @@
 
       legendToggle.addEventListener('click', () => {
         if (isMobileView()) return;
+        if (currentMode !== 'image') return;
+
         legendOverlay.classList.toggle('hidden');
+        legendOverlay.setAttribute(
+          'aria-hidden',
+          legendOverlay.classList.contains('hidden') ? 'true' : 'false'
+        );
       });
 
-      creditsToggle.addEventListener('click', () => creditsModal.classList.add('open'));
-      creditsToggleMobile.addEventListener('click', () => creditsModal.classList.add('open'));
-      closeCreditsBtn.addEventListener('click', () => creditsModal.classList.remove('open'));
+      creditsToggle.addEventListener('click', () => {
+        creditsModal.classList.add('open');
+      });
+
+      creditsToggleMobile.addEventListener('click', () => {
+        creditsModal.classList.add('open');
+      });
+
+      closeCreditsBtn.addEventListener('click', () => {
+        creditsModal.classList.remove('open');
+      });
 
       creditsModal.addEventListener('click', (e) => {
-        if (e.target === creditsModal) creditsModal.classList.remove('open');
+        if (e.target === creditsModal) {
+          creditsModal.classList.remove('open');
+        }
       });
 
       closeBtn.addEventListener('click', closeModal);
