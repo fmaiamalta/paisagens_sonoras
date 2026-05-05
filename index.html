@@ -1044,6 +1044,17 @@
   if (isMobileView()) {
     legendOverlay.classList.add('hidden');
     legendOverlay.setAttribute('aria-hidden', 'true');
+    return;
+  }
+
+  if (currentMode === 'image') {
+    legendOverlay.classList.remove('hidden');
+    legendOverlay.setAttribute('aria-hidden', 'false');
+  }
+
+  if (currentMode === 'audio') {
+    legendOverlay.classList.add('hidden');
+    legendOverlay.setAttribute('aria-hidden', 'true');
   }
 }
 
