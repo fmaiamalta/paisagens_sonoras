@@ -1215,8 +1215,32 @@
       });
 
       syncModeControls('audio');
-      updateLegendForDesktop();
-    })();
+updateLegendForDesktop();
+
+const params = new URLSearchParams(window.location.search);
+
+const spot = params.get('spot');
+const mode = params.get('mode');
+
+if (mode === 'audio') {
+  syncModeControls('audio');
+}
+
+if (mode === 'image') {
+  syncModeControls('image');
+}
+
+if (spot) {
+  const target = document.querySelector('.hotspot[data-id="' + spot + '"]');
+
+  if (target) {
+    setTimeout(() => {
+      openModal(target);
+    }, 300);
+  }
+}
+
+})();
   </script>
 </body>
 </html>
